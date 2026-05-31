@@ -1,1 +1,609 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>琉璃之境 | 现代美学视效</title>
+    <!-- 引入 Google Fonts 提升文字质感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- 引入 Font Awesome 6 (免费图标库) 增强视觉元素 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgba(15, 25, 45, 1) 0%, rgba(8, 12, 24, 1) 100%);
+            min-height: 100vh;
+            color: #f0f3fc;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 动态流光背景层 —— 提升高级感 */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 40% 50%, rgba(70, 130, 200, 0.2), transparent 70%);
+            animation: breathe 12s infinite alternate;
+        }
+
+        .ambient-glow::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: conic-gradient(from 0deg, rgba(100, 80, 255, 0.08), rgba(0, 255, 200, 0.05), rgba(255, 100, 150, 0.08), rgba(100, 80, 255, 0.08));
+            animation: slowSpin 28s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes slowSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.5; transform: scale(1);}
+            100% { opacity: 1; transform: scale(1.02);}
+        }
+
+        /* 自定义磨砂玻璃容器 + 优雅布局 */
+        .glass-card {
+            background: rgba(20, 30, 55, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 0.5px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+            background: rgba(25, 35, 65, 0.55);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.8rem;
+        }
+
+        /* 导航栏 */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0.8rem 2rem;
+            margin-bottom: 3rem;
+            background: rgba(12, 18, 34, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            border: 1px solid rgba(255,255,240,0.15);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFFFFF, #A0B9FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            background: none;
+            color: #9bbaff;
+            font-size: 1.8rem;
+            background-clip: unset;
+            -webkit-background-clip: unset;
+            color: #b7cdff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #eef3ff;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-shadow: 0 0 6px rgba(255,255,210,0.6);
+        }
+
+        /* 主角区 Hero */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .hero-content {
+            flex: 1.2;
+            min-width: 260px;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,245,0.2);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 1.2rem;
+            border: 0.5px solid rgba(255,255,245,0.3);
+        }
+
+        .hero-content h1 {
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(to right, #FFFFFF, #C4DEFF, #9BB6FF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #d3e2fd;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, #ffffff20, #ffffff08);
+            border: 1px solid rgba(255,255,245,0.5);
+            padding: 0.8rem 1.8rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 0.8rem 1.8rem;
+            border-radius: 2.5rem;
+            font-weight: 500;
+            color: #f0f3fc;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        .hero-visual {
+            flex: 0.9;
+            background: radial-gradient(ellipse at center, #2a3f6e30, transparent);
+            border-radius: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glass-shape {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle at 30% 30%, rgba(110, 150, 240, 0.4), rgba(30, 40, 70, 0.6));
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            backdrop-filter: blur(5px);
+            animation: float 7s ease-in-out infinite;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 20px 35px -10px black;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;}
+            50% { transform: translateY(-20px) rotate(3deg); border-radius: 53% 47% 42% 58% / 52% 39% 61% 48%;}
+            100% { transform: translateY(0px) rotate(0deg); border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;}
+        }
+
+        /* 特性卡片区域 */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 3rem 0 1.2rem 0;
+            letter-spacing: -0.3px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #9bbaff, transparent);
+            border-radius: 4px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0 4rem;
+        }
+
+        .feature-item {
+            padding: 1.8rem;
+            transition: transform 0.2s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-6px);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: #bdd3ff;
+        }
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+        }
+        .feature-item p {
+            color: #ccddf8;
+            font-size: 0.95rem;
+        }
+
+        /* 画廊展示 / 卡片作品集 */
+        .showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 4rem;
+        }
+        .art-card {
+            background: rgba(20, 28, 48, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 1.8rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,245,0.2);
+            transition: all 0.3s;
+        }
+        .art-card:hover {
+            border-color: rgba(255,255,245,0.5);
+            transform: scale(1.01);
+            background: rgba(30, 40, 65, 0.7);
+        }
+        .card-img {
+            height: 200px;
+            background: linear-gradient(145deg, #1e2a44, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #bdd3ff;
+            border-bottom: 1px solid rgba(255,255,200,0.2);
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-tag {
+            display: inline-block;
+            background: rgba(100,130,220,0.3);
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            margin-top: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* 报价 / 引语区块 */
+        .testimonial {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 1px solid rgba(255,255,245,0.25);
+        }
+        .testimonial i {
+            font-size: 2.5rem;
+            opacity: 0.7;
+            color: #b7cdff;
+        }
+        .testimonial p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 1rem auto;
+            font-style: italic;
+        }
+
+        /* 页脚 */
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #a3b6e0;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .social-icons a {
+            color: #c8dbff;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .social-icons a:hover {
+            color: white;
+            text-shadow: 0 0 8px white;
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e1428;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2c4270;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4e6c9e;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 760px) {
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            .container {
+                padding: 1.2rem;
+            }
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            .hero-desc {
+                max-width: 100%;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .testimonial p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="ambient-glow"></div>
+
+<div class="container">
+    <!-- 导航栏 磨砂玻璃质感 -->
+    <nav class="nav glass-card" style="padding: 0.6rem 2rem;">
+        <div class="logo">
+            <i class="fas fa-gem"></i>
+            <span>AetherUI</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">首 页</a>
+            <a href="#">探 索</a>
+            <a href="#">灵 感</a>
+            <a href="#">工 坊</a>
+            <a href="#">社 区</a>
+        </div>
+        <div>
+            <i class="fas fa-search" style="cursor: pointer; opacity: 0.8;"></i>
+        </div>
+    </nav>
+
+    <!-- Hero 主视觉区 -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-sparkle" style="font-size: 0.8rem;"></i>  ✦ 未来界面美学
+            </div>
+            <h1>让视觉，<br>成为沉浸的艺术</h1>
+            <p class="hero-desc">细腻毛玻璃质感、动态流光背景与优雅的交互动效，为你的数字产品注入高级感与现代气息。每一处细节皆为体验而生。</p>
+            <div class="btn-group">
+                <a href="#" class="btn-primary"><i class="fas fa-arrow-right"></i> 开始创作</a>
+                <a href="#" class="btn-outline"><i class="fas fa-play-circle"></i> 演示效果</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-shape"></div>
+        </div>
+    </div>
+
+    <!-- 核心特性 -->
+    <div>
+        <h2 class="section-title">精致 · 沉浸 · 灵动</h2>
+        <div class="features-grid">
+            <div class="feature-item glass-card">
+                <div class="feature-icon"><i class="fas fa-blur"></i></div>
+                <h3>毛玻璃质感</h3>
+                <p>高级 backdrop-filter 模糊层与柔和边框，营造通透的层次感，现代设计语言的核心表达。</p>
+            </div>
+            <div class="feature-item glass-card">
+                <div class="feature-icon"><i class="fas fa-fan"></i></div>
+                <h3>动态流光背景</h3>
+                <p>缓慢旋转的锥形渐变 + 呼吸光晕，让静态页面也拥有生命力，且不会干扰阅读。</p>
+            </div>
+            <div class="feature-item glass-card">
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>全端响应适配</h3>
+                <p>无论是手机、平板还是大屏显示器，所有圆润卡片和布局都保持优雅形态。</p>
+            </div>
+            <div class="feature-item glass-card">
+                <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                <h3>柔和配色系统</h3>
+                <p>深邃星空蓝紫渐变基底，配以冷调高光文字，色彩心理学上舒缓且专业。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作品展示 / 概念画廊 -->
+    <h2 class="section-title">创意画廊</h2>
+    <div class="showcase">
+        <div class="art-card">
+            <div class="card-img"><i class="fas fa-cloud-moon"></i> 🌙</div>
+            <div class="card-content">
+                <h4>月下极简</h4>
+                <p>流动线条与朦胧光效，简约而不简单的视觉叙事。</p>
+                <span class="card-tag"><i class="fas fa-tag"></i> 视觉设计</span>
+            </div>
+        </div>
+        <div class="art-card">
+            <div class="card-img"><i class="fas fa-water"></i> 🌊</div>
+            <div class="card-content">
+                <h4>玻璃海</h4>
+                <p>通透层叠结构，像海水与玻璃的交响，唤起宁静感。</p>
+                <span class="card-tag"><i class="fas fa-code"></i> 前端交互</span>
+            </div>
+        </div>
+        <div class="art-card">
+            <div class="card-img"><i class="fas fa-crystal-ball"></i> ✨</div>
+            <div class="card-content">
+                <h4>水晶幻境</h4>
+                <p>丰富折射光效，结合动态光晕营造高级科技氛围。</p>
+                <span class="card-tag"><i class="fas fa-gem"></i> 品牌概念</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引语区块 强化质感 -->
+    <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>“美，不仅是视觉的愉悦，更是界面与灵魂的对话。让每一个像素都传递温度。”</p>
+        <div style="margin-top: 12px;">—— 设计哲思 · 数字美学</div>
+    </div>
+
+    <!-- 额外的 CTA 卡片 或 订阅区块 -->
+    <div class="glass-card" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1.8rem 2rem; gap: 1rem;">
+        <div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 0.2rem;"><i class="fas fa-envelope-open-text"></i> 灵感快报</h3>
+            <p style="opacity: 0.8;">获取最新的设计模式与现代 CSS 技巧</p>
+        </div>
+        <div style="display: flex; gap: 12px;">
+            <input type="email" placeholder="您的电子邮箱" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 3rem; padding: 0.7rem 1.2rem; color: white; outline: none; backdrop-filter: blur(4px);">
+            <button class="btn-primary" style="border: none; cursor: pointer;">订阅</button>
+        </div>
+    </div>
+
+    <!-- footer 区域 -->
+    <footer>
+        <span>© 2025 AetherUI — 璃光设计体系 | 灵感源于自然与未来主义</span>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+</div>
+
+<!-- 轻微增加动态波纹效果 (鼠标跟随光晕，可选，增加美感和互动) -->
+<script>
+    (function() {
+        // 增加一个微妙的鼠标光晕效果，提升科技感
+        const glowElement = document.createElement('div');
+        glowElement.style.position = 'fixed';
+        glowElement.style.width = '400px';
+        glowElement.style.height = '400px';
+        glowElement.style.borderRadius = '50%';
+        glowElement.style.background = 'radial-gradient(circle, rgba(120,160,255,0.2) 0%, rgba(120,160,255,0) 70%)';
+        glowElement.style.pointerEvents = 'none';
+        glowElement.style.zIndex = '9999';
+        glowElement.style.transform = 'translate(-50%, -50%)';
+        glowElement.style.transition = 'transform 0.05s linear';
+        glowElement.style.willChange = 'transform';
+        document.body.appendChild(glowElement);
+        
+        let mouseX = 0, mouseY = 0;
+        let glowX = 0, glowY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function animateGlow() {
+            glowX += (mouseX - glowX) * 0.12;
+            glowY += (mouseY - glowY) * 0.12;
+            glowElement.style.left = glowX + 'px';
+            glowElement.style.top = glowY + 'px';
+            requestAnimationFrame(animateGlow);
+        }
+        animateGlow();
+        
+        // 优雅停用效果避免性能过载，移动端去除鼠标光晕? 保留也无妨
+        if ('ontouchstart' in window) {
+            glowElement.style.display = 'none';
+        }
+        
+        // 增加小小的console彩蛋
+        console.log("%c✨ 琉璃之境美化组件已激活 | 现代玻璃美学", "color: #9bbaff; font-size: 14px; font-weight: bold;");
+    })();
+</script>
+</body>
+</html>
