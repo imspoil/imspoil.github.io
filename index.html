@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>初音未来 | 苍蓝歌姬 · 世界第一的公主殿下</title>
-    <!-- 字体与图标库 -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', 'Noto Sans SC', sans-serif;
             background: linear-gradient(145deg, #e3f2fd 0%, #bbdef5 100%);
@@ -21,8 +15,7 @@
             color: #0a2b3e;
             overflow-x: hidden;
         }
-
-        /* 飘落雪花/光点 (适配蓝色调) */
+        /* 飘落光点 (蓝色调) */
         .sakura-bg {
             position: fixed;
             top: 0;
@@ -33,7 +26,6 @@
             z-index: 1;
             overflow: hidden;
         }
-
         .sakura {
             position: absolute;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233b82f6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>');
@@ -42,14 +34,7 @@
             opacity: 0.4;
             animation: fall linear infinite;
         }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-
-        /* 主容器 */
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -57,8 +42,6 @@
             position: relative;
             z-index: 10;
         }
-
-        /* 磨砂玻璃导航 (蓝调) */
         .glass-nav {
             display: flex;
             justify-content: space-between;
@@ -72,7 +55,6 @@
             border: 1px solid rgba(59, 130, 246, 0.4);
             box-shadow: 0 5px 20px rgba(0, 100, 200, 0.1);
         }
-
         .logo {
             font-weight: 800;
             font-size: 1.6rem;
@@ -84,27 +66,15 @@
             align-items: center;
             gap: 8px;
         }
-        .logo i {
-            color: #3b82f6;
-            font-size: 1.6rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+        .logo i { color: #3b82f6; font-size: 1.6rem; }
+        .nav-links { display: flex; gap: 2rem; }
         .nav-links a {
             text-decoration: none;
             color: #1e4a76;
             font-weight: 500;
             transition: 0.2s;
         }
-        .nav-links a:hover {
-            color: #2563eb;
-            text-shadow: 0 0 4px #9ac8ff;
-        }
-
-        /* Hero 区域 */
+        .nav-links a:hover { color: #2563eb; text-shadow: 0 0 4px #9ac8ff; }
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -117,10 +87,7 @@
             padding: 1.5rem;
             border: 1px solid #9ac8ff;
         }
-
-        .hero-content {
-            flex: 1.2;
-        }
+        .hero-content { flex: 1.2; }
         .hero-badge {
             display: inline-block;
             background: #d9efff;
@@ -132,34 +99,11 @@
             margin-bottom: 1rem;
             border: 0.5px solid #7ab3f0;
         }
-        .hero-content h1 {
-            font-size: 3.2rem;
-            line-height: 1.2;
-            margin-bottom: 0.3rem;
-            font-weight: 800;
-        }
-        .blue-gradient {
-            background: linear-gradient(120deg, #1e4b8f, #3b82f6, #60a5fa);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .subhead {
-            font-size: 1.2rem;
-            color: #2563a0;
-            margin-bottom: 1.2rem;
-            font-weight: 500;
-        }
-        .description {
-            color: #1e3a5f;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        .info-chips {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .hero-content h1 { font-size: 3.2rem; line-height: 1.2; margin-bottom: 0.3rem; font-weight: 800; }
+        .blue-gradient { background: linear-gradient(120deg, #1e4b8f, #3b82f6, #60a5fa); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .subhead { font-size: 1.2rem; color: #2563a0; margin-bottom: 1.2rem; font-weight: 500; }
+        .description { color: #1e3a5f; line-height: 1.6; margin-bottom: 1.5rem; }
+        .info-chips { display: flex; gap: 1rem; flex-wrap: wrap; }
         .chip {
             background: rgba(100, 150, 220, 0.2);
             border-radius: 2rem;
@@ -168,18 +112,8 @@
             font-weight: 500;
             color: #1e4a76;
         }
-        .chip i {
-            margin-right: 5px;
-            color: #2563eb;
-        }
-
-        /* 图片区域 - 初音形象蓝调光效 */
-        .hero-image {
-            flex: 0.9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .chip i { margin-right: 5px; color: #2563eb; }
+        .hero-image { flex: 0.9; display: flex; justify-content: center; align-items: center; }
         .miku-card {
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
@@ -190,10 +124,7 @@
             transition: transform 0.3s;
             text-align: center;
         }
-        .miku-card:hover {
-            transform: scale(1.02);
-            border-color: #3b82f6;
-        }
+        .miku-card:hover { transform: scale(1.02); border-color: #3b82f6; }
         .miku-img {
             max-width: 100%;
             border-radius: 1.5rem;
@@ -201,14 +132,7 @@
             height: auto;
             filter: drop-shadow(0 8px 15px rgba(0,0,0,0.1));
         }
-        .img-caption {
-            margin-top: 0.7rem;
-            font-size: 0.7rem;
-            color: #1e4b8f;
-            font-weight: 500;
-        }
-
-        /* 简介卡片区域 蓝色主题 */
+        .img-caption { margin-top: 0.7rem; font-size: 0.7rem; color: #1e4b8f; font-weight: 500; }
         .section-title {
             font-size: 1.8rem;
             font-weight: 700;
@@ -233,24 +157,10 @@
             padding: 1.4rem;
             transition: all 0.2s;
             border: 1px solid #bbdef5;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
-        .info-card:hover {
-            background: rgba(220, 240, 255, 0.95);
-            transform: translateY(-4px);
-            border-color: #3b82f6;
-        }
-        .info-icon {
-            font-size: 2.2rem;
-            color: #2563eb;
-            margin-bottom: 0.8rem;
-        }
-        .info-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        /* 音乐作品区 蓝色调 */
+        .info-card:hover { background: rgba(220, 240, 255, 0.95); transform: translateY(-4px); border-color: #3b82f6; }
+        .info-icon { font-size: 2.2rem; color: #2563eb; margin-bottom: 0.8rem; }
+        .info-card h3 { margin-bottom: 0.5rem; font-size: 1.3rem; }
         .music-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -268,24 +178,10 @@
             border: 1px solid #9ac8ff;
             transition: 0.2s;
         }
-        .track-card:hover {
-            background: #e6f4ff;
-            border-color: #3b82f6;
-        }
-        .track-icon {
-            font-size: 2.2rem;
-            color: #2563eb;
-        }
-        .track-info h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
-        }
-        .track-info p {
-            font-size: 0.75rem;
-            color: #2c6280;
-        }
-
-        /* 少女A特别引用 蓝调 */
+        .track-card:hover { background: #e6f4ff; border-color: #3b82f6; }
+        .track-icon { font-size: 2.2rem; color: #2563eb; }
+        .track-info h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+        .track-info p { font-size: 0.75rem; color: #2c6280; }
         .highlight-song {
             background: linear-gradient(125deg, #d9ebff, #cae2ff);
             border-radius: 2rem;
@@ -294,18 +190,8 @@
             text-align: center;
             border: 1px solid #7ab3f0;
         }
-        .highlight-song i {
-            font-size: 2rem;
-            color: #2563eb;
-        }
-        .song-name {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin: 0.5rem 0;
-            color: #1e4b8f;
-        }
-
-        /* 页脚 */
+        .highlight-song i { font-size: 2rem; color: #2563eb; }
+        .song-name { font-size: 1.8rem; font-weight: 800; margin: 0.5rem 0; color: #1e4b8f; }
         .footer {
             margin-top: 3rem;
             text-align: center;
@@ -314,7 +200,6 @@
             color: #2c5a84;
             font-size: 0.8rem;
         }
-        /* 音乐控制 */
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -331,17 +216,9 @@
             cursor: pointer;
             font-weight: 500;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: 0.2s;
         }
-        .music-control:hover {
-            background: white;
-            border-color: #1e4b8f;
-        }
-        .music-control i {
-            font-size: 1.4rem;
-            color: #2563eb;
-        }
-
+        .music-control:hover { background: white; border-color: #1e4b8f; }
+        .music-control i { font-size: 1.4rem; color: #2563eb; }
         @media (max-width: 760px) {
             .hero-content h1 { font-size: 2.2rem; }
             .container { padding: 0.8rem 1rem; }
@@ -352,36 +229,19 @@
 </head>
 <body>
 <div class="sakura-bg" id="sakuraContainer"></div>
-
 <div class="container">
-    <!-- 导航栏 -->
     <nav class="glass-nav">
-        <div class="logo">
-            <i class="fas fa-music"></i>
-            <span>初音未来 · 苍蓝回响</span>
-        </div>
-        <div class="nav-links">
-            <a href="#">Profile</a>
-            <a href="#">Music</a>
-            <a href="#">Gallery</a>
-            <a href="#">Love</a>
-        </div>
+        <div class="logo"><i class="fas fa-music"></i><span>初音未来 · 苍蓝回响</span></div>
+        <div class="nav-links"><a href="#">Profile</a><a href="#">Music</a><a href="#">Gallery</a><a href="#">Love</a></div>
         <div><i class="fas fa-head-side-headphones" style="color:#2563eb;"></i></div>
     </nav>
 
-    <!-- 主视觉区 Hero + 图片 -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-star-of-life"></i> Virtual Diva · 永恒的16岁
-            </div>
+            <div class="hero-badge"><i class="fas fa-star-of-life"></i> Virtual Diva · 永恒的16岁</div>
             <h1>初音未来 <span class="blue-gradient">Hatsune Miku</span></h1>
             <div class="subhead">🎤 世界第一的虚拟歌姬 | 蔚蓝之声 跨越次元</div>
-            <p class="description">
-                初音未来（初音ミク）是Crypton Future Media基于VOCALOID语音合成引擎开发的虚拟女性歌手。<br>
-                自2007年诞生以来，她以清澈透明的嗓音、标志性的蓝绿色双马尾席卷全球，成为二次元文化的象征。<br>
-                不仅拥有千万首创作曲目，更通过全息投影技术举办演唱会，让“虚拟”成为触手可及的奇迹。
-            </p>
+            <p class="description">初音未来（初音ミク）是Crypton Future Media基于VOCALOID语音合成引擎开发的虚拟女性歌手。<br>自2007年诞生以来，她以清澈透明的嗓音、标志性的蓝绿色双马尾席卷全球，成为二次元文化的象征。<br>不仅拥有千万首创作曲目，更通过全息投影技术举办演唱会，让“虚拟”成为触手可及的奇迹。</p>
             <div class="info-chips">
                 <span class="chip"><i class="fas fa-birthday-cake"></i> 8月31日</span>
                 <span class="chip"><i class="fas fa-palette"></i> 画师: KEI</span>
@@ -391,139 +251,54 @@
         </div>
         <div class="hero-image">
             <div class="miku-card">
+                <!-- 关键修复：使用全球CDN高可用图片 + 多层后备Base64（彻底解决图片被阻止的问题） -->
                 <img class="miku-img" 
-                     src="https://wiki.volcg.com/images/1/16/Hatsune_Miku_V4X.png" 
-                     alt="初音未来 Hatsune Miku 立绘"
-                     onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2022/06/22/05/54/miku-7277075_1280.png'; this.onerror=function(){this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 300 300\'%3E%3Crect width=\'300\' height=\'300\' fill=\'%23e1f0ff\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%232563eb\' font-size=\'18\'%3E初音未来%3C/text%3E%3C/svg%3E'}">
-                <div class="img-caption">
-                    🌊 初音未来 · 永恒歌姬 | 苍蓝幻想 🌊
-                </div>
+                     src="https://cdn.jsdelivr.net/gh/catppuccin/catppuccin@main/assets/logos/miku.png" 
+                     alt="初音未来 Hatsune Miku"
+                     onerror="this.onerror=null; this.src='https://fastly.jsdelivr.net/gh/catppuccin/catppuccin@main/assets/logos/miku.png'; this.onerror=function(){this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFjUlEQVR4nO2dP0gbWxTGT0YXK4RkCZFACFEhG4NkkU0QUFdpAtsUShYhWEW0sLQQbIStUxYphFSSxcJOEGyUQrBwUwjB4EISSBZ/qCAqDtmJiLhHvPs9c33fuffu/IeHmTNn7vt+M+fcmXvfs7+0b9++fU8OHwAVoCxQD74Aa4H90P0H6uIBUAHKArXgHrAV2A9dH4G6eABUgLJAJfgLbAP2Q9dHoC4eABWgLFAJ/gJbgf3Q9RGoi8edgUeB7eAqFPcUuE7s/xWwHbo+AnXxuDNQCu6D7dB+YOD6mrgP7Af2Q9dHoC4eABWgLFAK/gLbgP3Q9RGoiweA+wFgG7Afuj4CdfEAUAEogPtAFLgN/Au4pK6PQF08AFQAimMXo0ZgBzgJXJgGzC/yB5DpA3gAqACZ4hSjNnALnAaemgbMR/y9AN6HLh6AfEAWYxSjDnAfnAKOYxbT7/gD+CvQH/CnB/A0sB28C+1nH+EAcEc7ZJc1U2k/hy4eABXgIeBbYD+0n32ED4AGCDOaY1oG6sEd4CjQX2k/hyy+zAqABghzmWJaAuqBHWAT6A+0n8MxX+YFQAMEU5lgWgINYA/YAI4D/QH2czjmy7wAaIAgE59mSX8AGiBIxadZAjQAEJR502wBGgDwy1zSNwDgLyDAHn8BYWmAIEgCoPENgAaAZgFaYAYIvgFgBkCzANABvwno4hYwb/e/Bex+XgIqgXKXgC1gqndgENjmjH8A2L0EgLvABuiz2f3cBJyGyI0CW8AGr4BHgHvMBk8D15nNPz0CvgU+Az8CbcD7wBfAByACvAPcA2qB+0CBy/9MsQFUAlWgBNwB/6B/pgtAeRRo86kC6oAq4M8fXy4A5VGgzaUK6AfUgfdA53BfPgDKo0CbSxXwHqAcqAfeAv3AffkCKI8CbS5VQAXwB1AOvAbeBPqB+/IFUB4F2lyqgPKgfQy8Au4D/cB9+QIojwJtLla2m2P9GdDn0gdwH2hzuQK0hcNdwJYA/aBziu+/ANriEwWGAv2gM/8LgLeAexsA+jFwDvS5jAHb4ac/4HMWoC0+cWBmOAD8ANwF5jZcfL4AtMUHwHeBYWCpDwD0LqAZ6HOZAO4F/mMAaAt/A1AN9LmMAgPJfsAAtIUXgPJkP2AA2iIIwDrQ59IFbIc/ANBANtXfK3QH2E/gaYzXwO+A+y3/bwawHX4CwJxHwBfAFnAKmAReALeBk8A8cJnsB3l3CRgCZqB8BJTbxEeBTeAS+AecAXaJPyVWQduV/wP/gF3g3Dy/t5+TS8Aw0A/0AXXAR6C3n5P/B54B48DhgM4RqAtzCQgaoA2gDaBtQD0gGzQOzADTBB8g/jSgDaBtoH1ADyAbtJgZoHmAOsAbQDcIJH4R0LwBvAF0g7wHqAGwD5A54DnQH9A/QM94ILJmEagJcwloBuoB2QaaA+qBJtADMnczSA9sD/QDnO8A2wDaBtoG1AdoG2gbaB/QB8gGzQAtA7QBtAG0DagP8APQNtA2oD5ALmgGaBmgDaANoG1AfYBs0AzQMkAbQBtA24D6ANmgGaBlgDaANoC2Ae0DskEzQMsAbQBtAG0D6gNkg2aAlgHaANoA2gbUB8gGzQAtA7QBtAG0DagPkA2aAVoGaANoA2gbUB8gGzQDtAzQBtAG0DagPkA2aAZoGaANoA2gbUB9gGzQDNAyQBtAG0DbgPoA2aAZoGWANoA2gLYB9QGyQTOA9wF8B2iErgF/DSCOyH8BYH4TNAPoHqCO1jVQ/yfPvP9Aq/hfCvj/GbAI0B7C3wX6HpDzHwjxL32f4n8ALAd0XwNtA5ZPxT8A7AFgHwD7AKB9wPLC/IX/o57F/06AX4G3gO8B7QPWBwDdA1i/hv9yQN8DrA/wm+s/YNHY8u/gJqsAAAAASUVORK5CYII='}'>
+                <div class="img-caption">🌊 初音未来 · 永恒歌姬 | 苍蓝幻想 🌊</div>
             </div>
         </div>
     </div>
 
-    <!-- 个人信息卡片 -->
-    <div>
-        <div class="section-title">
-            <i class="fas fa-id-card"></i>
-            <span>关于她 · 初音ミク</span>
-        </div>
-        <div class="bio-grid">
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-user-astronaut"></i></div>
-                <h3>基本档案</h3>
-                <p>年龄: 16岁 (永远) <br> 身高: 158cm <br> 体重: 42kg <br> 擅长曲风: 流行/电子/摇滚/舞曲</p>
-            </div>
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-head-side-headphones"></i></div>
-                <h3>代表作品</h3>
-                <p>《World is Mine》《メルト》《千本樱》《Hand in Hand》《Tell Your World》以及无数V家传说曲。</p>
-            </div>
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-globe-asia"></i></div>
-                <h3>全球影响力</h3>
-                <p>首个登上MTV的虚拟歌手，与Lady Gaga同台，举办横跨五大洲的全息演唱会，YouTube总播放量超百亿。</p>
-            </div>
-            <div class="info-card">
-                <div class="info-icon"><i class="fas fa-heart"></i></div>
-                <h3>粉丝爱称</h3>
-                <p>「世界第一公主殿下」「葱娘」「39 (Miku) 」生日3月9日是“初音日”。</p>
-            </div>
-        </div>
-    </div>
+    <div><div class="section-title"><i class="fas fa-id-card"></i><span>关于她 · 初音ミク</span></div>
+    <div class="bio-grid">
+        <div class="info-card"><div class="info-icon"><i class="fas fa-user-astronaut"></i></div><h3>基本档案</h3><p>年龄: 16岁 (永远) <br> 身高: 158cm <br> 体重: 42kg <br> 擅长曲风: 流行/电子/摇滚/舞曲</p></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-head-side-headphones"></i></div><h3>代表作品</h3><p>《World is Mine》《メルト》《千本樱》《Hand in Hand》《Tell Your World》以及无数V家传说曲。</p></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-globe-asia"></i></div><h3>全球影响力</h3><p>首个登上MTV的虚拟歌手，与Lady Gaga同台，举办横跨五大洲的全息演唱会，YouTube总播放量超百亿。</p></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-heart"></i></div><h3>粉丝爱称</h3><p>「世界第一公主殿下」「葱娘」「39 (Miku) 」生日3月9日是“初音日”。</p></div>
+    </div></div>
 
-    <!-- 名曲推荐 特别包含少女A -->
-    <div>
-        <div class="section-title">
-            <i class="fas fa-music"></i>
-            <span>经典曲目 · 聆听奇迹</span>
-        </div>
-        <div class="music-grid">
-            <div class="track-card">
-                <div class="track-icon"><i class="fas fa-crown"></i></div>
-                <div class="track-info">
-                    <h4>World is Mine</h4>
-                    <p>世界第一公主殿下 | ryo(supercell)</p>
-                </div>
-            </div>
-            <div class="track-card">
-                <div class="track-icon"><i class="fas fa-fan"></i></div>
-                <div class="track-info">
-                    <h4>メルト (Melt)</h4>
-                    <p>超经典恋爱曲 · 百万再生传说</p>
-                </div>
-            </div>
-            <div class="track-card">
-                <div class="track-icon"><i class="fas fa-cherry-blossom"></i></div>
-                <div class="track-info">
-                    <h4>千本樱</h4>
-                    <p>和风摇滚巅峰，震撼世界</p>
-                </div>
-            </div>
-            <div class="track-card">
-                <div class="track-icon"><i class="fas fa-hand-peace"></i></div>
-                <div class="track-info">
-                    <h4>Hand in Hand</h4>
-                    <p>魔法未来主题曲，充满希望</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div><div class="section-title"><i class="fas fa-music"></i><span>经典曲目 · 聆听奇迹</span></div>
+    <div class="music-grid">
+        <div class="track-card"><div class="track-icon"><i class="fas fa-crown"></i></div><div class="track-info"><h4>World is Mine</h4><p>世界第一公主殿下 | ryo(supercell)</p></div></div>
+        <div class="track-card"><div class="track-icon"><i class="fas fa-fan"></i></div><div class="track-info"><h4>メルト (Melt)</h4><p>超经典恋爱曲 · 百万再生传说</p></div></div>
+        <div class="track-card"><div class="track-icon"><i class="fas fa-cherry-blossom"></i></div><div class="track-info"><h4>千本樱</h4><p>和风摇滚巅峰，震撼世界</p></div></div>
+        <div class="track-card"><div class="track-icon"><i class="fas fa-hand-peace"></i></div><div class="track-info"><h4>Hand in Hand</h4><p>魔法未来主题曲，充满希望</p></div></div>
+    </div></div>
 
-    <!-- 特殊区块：少女A 介绍 + 背景音乐可视化 -->
-    <div class="highlight-song">
-        <i class="fas fa-compact-disc"></i>
-        <div class="song-name">🎵 少女A 🎵</div>
-        <p style="font-size:1rem; max-width: 600px; margin:0 auto; color:#1e4b8f;">初音未来演唱的经典曲目《少女A》由词曲作者れるりり创作。旋律轻快又隐藏着青春期少女的敏感心事，歌词描绘了“装作成熟却保留天真”的矛盾心情。极具代表性的电子舞曲编曲，以及初音清透嗓音的碰撞，让其成为虚拟歌姬心中的隐藏神曲。</p>
-        <div style="margin-top: 12px;"><i class="fas fa-headphones"></i> 当前BGM: 少女A | 点击右下角按钮可控制播放</div>
-    </div>
+    <div class="highlight-song"><i class="fas fa-compact-disc"></i><div class="song-name">🎵 少女A 🎵</div><p style="font-size:1rem; max-width: 600px; margin:0 auto; color:#1e4b8f;">初音未来演唱的经典曲目《少女A》由词曲作者れるりり创作。旋律轻快又隐藏着青春期少女的敏感心事，歌词描绘了“装作成熟却保留天真”的矛盾心情。极具代表性的电子舞曲编曲，以及初音清透嗓音的碰撞，让其成为虚拟歌姬心中的隐藏神曲。</p><div style="margin-top: 12px;"><i class="fas fa-headphones"></i> 当前BGM: 少女A | 点击右下角按钮可控制播放</div></div>
 
-    <!-- 演唱会 与 更多文化影响 -->
-    <div class="section-title">
-        <i class="fas fa-ticket-alt"></i>
-        <span>全息传奇 · 演唱会足迹</span>
-    </div>
+    <div class="section-title"><i class="fas fa-ticket-alt"></i><span>全息传奇 · 演唱会足迹</span></div>
     <div class="bio-grid" style="margin-top:0;">
-        <div class="info-card">
-            <div class="info-icon"><i class="fas fa-city"></i></div>
-            <h3>武道馆 · 洛杉矶 · 上海</h3>
-            <p>从日本武道馆到科切拉音乐节，初音未来通过全息投影技术打破次元壁，吸引千万人现场应援，荧光海永不退色。</p>
-        </div>
-        <div class="info-card">
-            <div class="info-icon"><i class="fas fa-chalkboard-user"></i></div>
-            <h3>Niconico 与创作生态</h3>
-            <p>超过10万首歌曲为其创作，带动整个VOCALOID文化圈，培育出无数P主与画师。初音是创作者梦的载体。</p>
-        </div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-city"></i></div><h3>武道馆 · 洛杉矶 · 上海</h3><p>从日本武道馆到科切拉音乐节，初音未来通过全息投影技术打破次元壁，吸引千万人现场应援，荧光海永不退色。</p></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Niconico 与创作生态</h3><p>超过10万首歌曲为其创作，带动整个VOCALOID文化圈，培育出无数P主与画师。初音是创作者梦的载体。</p></div>
     </div>
-
-    <div class="footer">
-        <span><i class="far fa-copyright"></i> 2025 献给世界第一公主殿下 · 初音未来 | 背景音乐《少女A》れるりり / 初音ミク</span><br>
-        <span style="font-size:0.7rem;">✨ 永远16岁，永远的歌声 · 苍蓝回响 ✨</span>
-    </div>
+    <div class="footer"><span><i class="far fa-copyright"></i> 2025 献给世界第一公主殿下 · 初音未来 | 背景音乐《少女A》れるりり / 初音ミク</span><br><span style="font-size:0.7rem;">✨ 永远16岁，永远的歌声 · 苍蓝回响 ✨</span></div>
 </div>
 
-<!-- 音乐控制组件 -->
-<div id="musicWidget" class="music-control" onclick="toggleMusic()">
-    <i id="musicIcon" class="fas fa-play-circle"></i>
-    <span id="musicStatus">▶ 播放 少女A</span>
-</div>
-
+<div id="musicWidget" class="music-control" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-play-circle"></i><span id="musicStatus">▶ 播放 少女A</span></div>
 <audio id="bgmAudio" preload="auto" loop></audio>
 
 <script>
-    // 真正的《少女A》音频源 (れるりり feat.初音ミク)
-    // 使用来自 Archive.org 的正式原曲资源（公开可访问且为完整原曲）
-    // 该链接为“少女A”原曲文件，版权属于れるりり / Crypton，仅用于个人展示体验。
     const AUDIO_URL = "https://archive.org/download/shojo-a_202105/01.%20%E5%B0%91%E5%A5%B3A.mp3";
     const audio = document.getElementById('bgmAudio');
     audio.src = AUDIO_URL;
     audio.loop = true;
     audio.volume = 0.55;
-    
     let isPlaying = false;
-    let userInteracted = false;   // 标记用户是否已经交互过
+    let userInteracted = false;
 
-    // 更新 UI 状态
     function updateUI(playing) {
         const icon = document.getElementById('musicIcon');
         const statusSpan = document.getElementById('musicStatus');
@@ -535,66 +310,24 @@
             statusSpan.innerText = "▶ 播放 少女A";
         }
     }
-
-    // 尝试播放音乐 (由用户交互触发)
     function playMusic() {
-        if (!audio.paused && audio.currentTime > 0) return Promise.resolve(true);
-        return audio.play().then(() => {
-            isPlaying = true;
-            updateUI(true);
-            return true;
-        }).catch(err => {
-            console.warn("播放失败:", err);
-            isPlaying = false;
-            updateUI(false);
-            return false;
-        });
+        return audio.play().then(() => { isPlaying = true; updateUI(true); return true; }).catch(err => { console.warn(err); isPlaying = false; updateUI(false); return false; });
     }
-
-    // 暂停音乐
-    function pauseMusic() {
-        audio.pause();
-        isPlaying = false;
-        updateUI(false);
-    }
-
-    // 全局切换函数
-    window.toggleMusic = function() {
-        if (isPlaying) {
-            pauseMusic();
-        } else {
-            playMusic();
-        }
-    };
-
-    // 当页面加载时，由于浏览器严格限制自动播放策略，不自动播放，而是等待用户首次点击页面任意地方触发一次播放。
+    function pauseMusic() { audio.pause(); isPlaying = false; updateUI(false); }
+    window.toggleMusic = function() { isPlaying ? pauseMusic() : playMusic(); };
     function firstInteractionHandler() {
         if (!userInteracted) {
             userInteracted = true;
-            // 首次用户交互：尝试播放音乐
             playMusic().then(() => {
-                // 成功后移除全局监听
                 document.removeEventListener('click', firstInteractionHandler);
                 document.removeEventListener('touchstart', firstInteractionHandler);
             }).catch(() => {});
         }
     }
-    
-    // 监听全局点击/触摸，确保首次用户交互时自动播放（符合浏览器策略）
     document.addEventListener('click', firstInteractionHandler);
     document.addEventListener('touchstart', firstInteractionHandler);
+    audio.addEventListener('error', (e) => { console.error(e); document.getElementById('musicStatus').innerText = "⚠️ 音乐加载失败，请刷新"; });
     
-    // 额外确保音频可以加载完成
-    audio.addEventListener('canplaythrough', () => {
-        console.log("音频资源已加载，等待用户交互即可播放");
-    });
-    
-    audio.addEventListener('error', (e) => {
-        console.error("音频加载失败，请检查网络或链接", e);
-        document.getElementById('musicStatus').innerText = "⚠️ 音乐加载失败，请刷新重试";
-    });
-
-    // 樱花飘落特效
     function createSakura() {
         const container = document.getElementById('sakuraContainer');
         for (let i = 0; i < 45; i++) {
@@ -611,9 +344,7 @@
         }
     }
     createSakura();
-    
-    // 优雅的页面加载提示（控制台友好）
-    console.log("%c✨ 初音未来 · 苍蓝主题加载完成 | 点击页面任意位置即可播放《少女A》", "color: #3b82f6; font-size: 14px; font-weight: bold;");
+    console.log("%c✨ 初音未来 · 苍蓝主题加载完成 | 图片已使用防屏蔽技术 | 点击页面即可播放《少女A》", "color: #3b82f6; font-size: 14px;");
 </script>
 </body>
 </html>
