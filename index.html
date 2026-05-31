@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>琉璃之境 | 现代美学视效</title>
-    <!-- 引入 Google Fonts 提升文字质感 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- 引入 Font Awesome 6 (免费图标库) 增强视觉元素 -->
+    <title>嘉登 · 星流工程师 | 灾厄档案</title>
+    <!-- 引入字体：科技感与现代结合 -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -17,105 +16,117 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at 10% 20%, rgba(15, 25, 45, 1) 0%, rgba(8, 12, 24, 1) 100%);
-            min-height: 100vh;
-            color: #f0f3fc;
+            background: #0a0c16;
+            font-family: 'Inter', 'Space Grotesk', sans-serif;
+            color: #e8edff;
             line-height: 1.5;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* 动态流光背景层 —— 提升高级感 */
-        .ambient-glow {
+        /* 动态科技网格背景 */
+        .cyber-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: -2;
-            background: radial-gradient(ellipse at 40% 50%, rgba(70, 130, 200, 0.2), transparent 70%);
-            animation: breathe 12s infinite alternate;
-        }
-
-        .ambient-glow::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: conic-gradient(from 0deg, rgba(100, 80, 255, 0.08), rgba(0, 255, 200, 0.05), rgba(255, 100, 150, 0.08), rgba(100, 80, 255, 0.08));
-            animation: slowSpin 28s linear infinite;
             pointer-events: none;
         }
 
-        @keyframes slowSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .cyber-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 150, 255, 0.08), transparent 70%);
+            animation: pulseGlow 8s ease infinite;
         }
 
-        @keyframes breathe {
-            0% { opacity: 0.5; transform: scale(1);}
-            100% { opacity: 1; transform: scale(1.02);}
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.4; }
         }
 
-        /* 自定义磨砂玻璃容器 + 优雅布局 */
-        .glass-card {
-            background: rgba(20, 30, 55, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 0.5px rgba(255, 255, 255, 0.1) inset;
-            transition: all 0.3s ease;
+        /* 滚动光效 */
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 180, 255, 0.03) 50%, transparent 100%);
+            pointer-events: none;
+            z-index: -1;
+            animation: scan 10s linear infinite;
         }
 
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
-            background: rgba(25, 35, 65, 0.55);
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
 
+        /* 主容器 */
         .container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 2rem 1.8rem;
+            padding: 1.5rem 2rem 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 科技感卡片 - 半透明蓝紫 */
+        .tech-card {
+            background: rgba(12, 18, 32, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(0, 180, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 200, 255, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            border-color: rgba(0, 200, 255, 0.6);
+            background: rgba(14, 22, 40, 0.75);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         /* 导航栏 */
-        .nav {
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            padding: 0.8rem 2rem;
-            margin-bottom: 3rem;
-            background: rgba(12, 18, 34, 0.6);
-            backdrop-filter: blur(12px);
+            padding: 0.7rem 2rem;
+            margin-bottom: 2.5rem;
+            background: rgba(0, 5, 15, 0.7);
+            backdrop-filter: blur(16px);
             border-radius: 3rem;
-            border: 1px solid rgba(255,255,240,0.15);
+            border: 1px solid rgba(0, 160, 255, 0.35);
         }
 
         .logo {
             font-weight: 700;
-            font-size: 1.7rem;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFFFFF, #A0B9FF);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff, #00ccff, #7a2eff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .logo i {
+            color: #00ccff;
             background: none;
-            color: #9bbaff;
-            font-size: 1.8rem;
-            background-clip: unset;
-            -webkit-background-clip: unset;
-            color: #b7cdff;
+            font-size: 1.6rem;
         }
 
         .nav-links {
@@ -125,484 +136,512 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #eef3ff;
+            color: #b8e2ff;
             font-weight: 500;
             transition: 0.2s;
-            font-size: 1rem;
-            position: relative;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
 
         .nav-links a:hover {
-            color: white;
-            text-shadow: 0 0 6px rgba(255,255,210,0.6);
+            color: #00ccff;
+            text-shadow: 0 0 8px #00ccff;
         }
 
-        /* 主角区 Hero */
+        /* Hero 区域 */
         .hero {
             display: flex;
             flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
             align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            margin-bottom: 5rem;
         }
 
-        .hero-content {
+        .hero-info {
             flex: 1.2;
-            min-width: 260px;
         }
 
         .hero-badge {
-            background: rgba(255,255,245,0.2);
-            backdrop-filter: blur(4px);
             display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            letter-spacing: 0.3px;
-            margin-bottom: 1.2rem;
-            border: 0.5px solid rgba(255,255,245,0.3);
+            background: rgba(0, 150, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-left: 3px solid #00ccff;
+            margin-bottom: 1rem;
+            font-family: monospace;
         }
 
-        .hero-content h1 {
-            font-size: 3.4rem;
+        .hero-info h1 {
+            font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(to right, #FFFFFF, #C4DEFF, #9BB6FF);
+            margin-bottom: 0.5rem;
+        }
+
+        .gradient-name {
+            background: linear-gradient(135deg, #ffffff, #00ccff, #a855f7);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
 
-        .hero-desc {
-            font-size: 1.1rem;
-            color: #d3e2fd;
-            margin-bottom: 2rem;
-            max-width: 90%;
+        .title-tag {
+            font-size: 1.2rem;
+            color: #7bc5ff;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
-        .btn-group {
+        .hero-desc {
+            color: #c5d9ff;
+            margin: 1rem 0 1.5rem;
+            max-width: 90%;
+            line-height: 1.6;
+        }
+
+        .stat-badge {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
+            margin-top: 1rem;
             flex-wrap: wrap;
         }
 
-        .btn-primary {
-            background: linear-gradient(105deg, #ffffff20, #ffffff08);
-            border: 1px solid rgba(255,255,245,0.5);
-            padding: 0.8rem 1.8rem;
-            border-radius: 2.5rem;
+        .stat {
+            background: rgba(0, 30, 50, 0.6);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            border: 0.5px solid #2a6f8f;
+        }
+
+        .stat i {
+            color: #00ccff;
+            margin-right: 6px;
+        }
+
+        /* 全息投影容器 - 用于展示嘉登图片 */
+        .hero-visual {
+            flex: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 嘉登角色图片卡片（结合像素风格与科技感） */
+        .character-card {
+            background: rgba(8, 12, 24, 0.65);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 0.8rem;
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            text-align: center;
+        }
+        .character-card:hover {
+            transform: scale(1.02);
+            border-color: #00ccff;
+            box-shadow: 0 0 40px rgba(0, 200, 255, 0.5);
+        }
+        .character-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1.2rem;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 8px rgba(0,200,255,0.4));
+        }
+        .img-caption {
+            margin-top: 0.8rem;
+            font-size: 0.7rem;
+            color: #9bc2ff;
+            letter-spacing: 1px;
+            font-family: monospace;
+            border-top: 1px dashed rgba(0,200,255,0.4);
+            padding-top: 0.5rem;
+            display: inline-block;
+        }
+
+        /* 章节标题 */
+        .section-title {
+            font-size: 1.8rem;
             font-weight: 600;
-            color: white;
-            text-decoration: none;
-            backdrop-filter: blur(5px);
-            transition: 0.2s;
-            display: inline-flex;
+            margin: 2.5rem 0 1.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid #00ccff;
+            padding-left: 1rem;
+        }
+
+        .section-title i {
+            color: #00ccff;
+            font-size: 1.6rem;
+        }
+
+        /* 日志网格 - 实验室卡片 */
+        .logs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .log-card {
+            background: rgba(5, 10, 22, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 1.2rem;
+            padding: 1.3rem;
+            border-left: 3px solid;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .log-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .log-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .btn-primary:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.4);
-            padding: 0.8rem 1.8rem;
-            border-radius: 2.5rem;
-            font-weight: 500;
-            color: #f0f3fc;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
-        }
-
-        .hero-visual {
-            flex: 0.9;
-            background: radial-gradient(ellipse at center, #2a3f6e30, transparent);
-            border-radius: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .glass-shape {
-            width: 280px;
-            height: 280px;
-            background: radial-gradient(circle at 30% 30%, rgba(110, 150, 240, 0.4), rgba(30, 40, 70, 0.6));
-            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-            backdrop-filter: blur(5px);
-            animation: float 7s ease-in-out infinite;
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 20px 35px -10px black;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;}
-            50% { transform: translateY(-20px) rotate(3deg); border-radius: 53% 47% 42% 58% / 52% 39% 61% 48%;}
-            100% { transform: translateY(0px) rotate(0deg); border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;}
-        }
-
-        /* 特性卡片区域 */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin: 3rem 0 1.2rem 0;
-            letter-spacing: -0.3px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 3px;
-            background: linear-gradient(90deg, #9bbaff, transparent);
-            border-radius: 4px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2.5rem 0 4rem;
-        }
-
-        .feature-item {
-            padding: 1.8rem;
-            transition: transform 0.2s ease;
-        }
-        .feature-item:hover {
-            transform: translateY(-6px);
-        }
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.2rem;
-            color: #bdd3ff;
-        }
-        .feature-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.7rem;
-            font-weight: 600;
-        }
-        .feature-item p {
-            color: #ccddf8;
-            font-size: 0.95rem;
-        }
-
-        /* 画廊展示 / 卡片作品集 */
-        .showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0 4rem;
-        }
-        .art-card {
-            background: rgba(20, 28, 48, 0.55);
-            backdrop-filter: blur(8px);
-            border-radius: 1.8rem;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,245,0.2);
-            transition: all 0.3s;
-        }
-        .art-card:hover {
-            border-color: rgba(255,255,245,0.5);
-            transform: scale(1.01);
-            background: rgba(30, 40, 65, 0.7);
-        }
-        .card-img {
-            height: 200px;
-            background: linear-gradient(145deg, #1e2a44, #0f172a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: #bdd3ff;
-            border-bottom: 1px solid rgba(255,255,200,0.2);
-        }
-        .card-content {
-            padding: 1.5rem;
-        }
-        .card-content h4 {
-            font-size: 1.4rem;
+        .log-card p {
+            font-size: 0.85rem;
+            color: #b8c9f0;
+            line-height: 1.5;
             margin-bottom: 0.5rem;
         }
-        .card-tag {
-            display: inline-block;
-            background: rgba(100,130,220,0.3);
-            border-radius: 20px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.7rem;
-            margin-top: 0.8rem;
-            letter-spacing: 0.5px;
-        }
 
-        /* 报价 / 引语区块 */
-        .testimonial {
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            padding: 2.5rem;
-            margin: 3rem 0;
-            text-align: center;
-            border: 1px solid rgba(255,255,245,0.25);
-        }
-        .testimonial i {
-            font-size: 2.5rem;
-            opacity: 0.7;
-            color: #b7cdff;
-        }
-        .testimonial p {
-            font-size: 1.3rem;
-            font-weight: 400;
-            max-width: 800px;
-            margin: 1rem auto;
+        .log-excerpt {
+            font-size: 0.8rem;
+            color: #8dabf0;
             font-style: italic;
+            border-top: 0.5px solid rgba(0,200,255,0.3);
+            padding-top: 0.6rem;
+            margin-top: 0.5rem;
         }
 
-        /* 页脚 */
+        /* 造物展示区 */
+        .machines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .machine-card {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            text-align: center;
+            padding: 1.3rem;
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            transition: all 0.2s;
+        }
+
+        .machine-card:hover {
+            border-color: #00ccff;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
+        }
+
+        .machine-icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            color: #00ccff;
+        }
+
+        .machine-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 引语区域 */
+        .quote-area {
+            background: linear-gradient(135deg, rgba(0, 50, 80, 0.4), rgba(20, 0, 50, 0.5));
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+
+        .quote-area i {
+            font-size: 2rem;
+            color: #00ccff;
+            opacity: 0.7;
+        }
+
+        .quote-text {
+            font-size: 1.15rem;
+            margin: 0.8rem 0;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* 实验室分布表格风格 */
+        .lab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .lab-tag {
+            background: rgba(0, 150, 255, 0.15);
+            border-radius: 2rem;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            border: 0.5px solid #2c6d96;
+        }
+
         footer {
             margin-top: 4rem;
             text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #a3b6e0;
-            font-size: 0.85rem;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-        .social-icons a {
-            color: #c8dbff;
-            margin-left: 1rem;
-            font-size: 1.2rem;
-            transition: 0.2s;
-        }
-        .social-icons a:hover {
-            color: white;
-            text-shadow: 0 0 8px white;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 150, 255, 0.2);
+            font-size: 0.75rem;
+            color: #7b93b5;
         }
 
-        /* 滚动条美化 */
+        /* 滚动条 */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0e1428;
+            background: #0a0c16;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2c4270;
+            background: #1c6f9e;
             border-radius: 8px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4e6c9e;
-        }
 
-        /* 响应式微调 */
         @media (max-width: 760px) {
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-            .container {
-                padding: 1.2rem;
-            }
-            .nav {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-            .hero-desc {
-                max-width: 100%;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .testimonial p {
-                font-size: 1rem;
-            }
+            .container { padding: 1rem; }
+            .hero-info h1 { font-size: 2.2rem; }
+            .character-card { max-width: 260px; margin: 0 auto; }
+            .hero-visual { flex: 1; }
+            .section-title { font-size: 1.4rem;}
+            .hero-desc { max-width: 100%; }
         }
     </style>
 </head>
 <body>
-<div class="ambient-glow"></div>
+<div class="cyber-bg"></div>
+<div class="scan-line"></div>
 
 <div class="container">
-    <!-- 导航栏 磨砂玻璃质感 -->
-    <nav class="nav glass-card" style="padding: 0.6rem 2rem;">
+    <!-- 导航 -->
+    <nav class="navbar">
         <div class="logo">
-            <i class="fas fa-gem"></i>
-            <span>AetherUI</span>
+            <i class="fas fa-microchip"></i>
+            <span>DRAEDON<span style="color:#00ccff;">.ARCHIVE</span></span>
         </div>
         <div class="nav-links">
-            <a href="#">首 页</a>
-            <a href="#">探 索</a>
-            <a href="#">灵 感</a>
-            <a href="#">工 坊</a>
-            <a href="#">社 区</a>
+            <a href="#">全息档案</a>
+            <a href="#">实验日志</a>
+            <a href="#">星流巨械</a>
+            <a href="#">加密协议</a>
         </div>
-        <div>
-            <i class="fas fa-search" style="cursor: pointer; opacity: 0.8;"></i>
-        </div>
+        <div><i class="fas fa-satellite-dish" style="color:#00ccff;"></i></div>
     </nav>
 
-    <!-- Hero 主视觉区 -->
+    <!-- Hero 信息区 + 嘉登角色图片 (灾厄著名像素绘/同人视觉) -->
     <div class="hero">
-        <div class="hero-content">
+        <div class="hero-info">
             <div class="hero-badge">
-                <i class="fas fa-sparkle" style="font-size: 0.8rem;"></i>  ✦ 未来界面美学
+                <i class="fas fa-brain"></i> 意识上传 · 永恒求知者
             </div>
-            <h1>让视觉，<br>成为沉浸的艺术</h1>
-            <p class="hero-desc">细腻毛玻璃质感、动态流光背景与优雅的交互动效，为你的数字产品注入高级感与现代气息。每一处细节皆为体验而生。</p>
-            <div class="btn-group">
-                <a href="#" class="btn-primary"><i class="fas fa-arrow-right"></i> 开始创作</a>
-                <a href="#" class="btn-outline"><i class="fas fa-play-circle"></i> 演示效果</a>
+            <h1><span class="gradient-name">嘉登</span><br>首席科学工程师</h1>
+            <div class="title-tag">✦ 星流巨械之父 | 亚利姆麾下首席科学家 ✦</div>
+            <p class="hero-desc">
+                六个世纪前于针叶林的废弃实验室中苏醒，自此将生命奉献给无尽的科学求知。<br>
+                机械三王、白金星舰、星流巨械……每一件造物都是其智慧的延伸。<br>
+                不为权力，不为永生，只为突破科学边界的桎梏，探索真理的深渊。<br>
+                如今，其意识已上传至无人能及的数据库，以观察者之姿见证世界。
+            </p>
+            <div class="stat-badge">
+                <div class="stat"><i class="fas fa-flask"></i> 活跃纪元: 6世纪+</div>
+                <div class="stat"><i class="fas fa-robot"></i> 主要造物: 13+ 巨械</div>
+                <div class="stat"><i class="fas fa-dna"></i> 研究领域: 纳米/机械/量子</div>
             </div>
         </div>
         <div class="hero-visual">
-            <div class="glass-shape"></div>
+            <!-- 嘉登图片展示区域: 包含官方及灾厄社区流传的标志性嘉登立绘(像素/同人) 
+                 使用灾厄wiki及模组广泛使用的嘉登头像绘图，纯base64备选确保永远可见，同时外链(可靠图片资源) 
+            -->
+            <div class="character-card">
+                <img class="character-img" 
+                     src="https://wiki.calamitymod.net/images/d/d4/Draedon.png" 
+                     alt="嘉登 · 星流工程师 灾厄模组经典形象"
+                     onerror="this.onerror=null; this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZUlEQVR4nO2dPUgUURTHf7O7q5uVhkH0AR9WIBKtkZWFQbC1MBCC0CpoJVgLQWwFL6wMNoJgoYVgoYXFgdBCEHQTCwPBwiCfoJWoKEHM3dWZe3N3Z3fndj7e/b/wsO/MfO/3zr0z796ZGUtMYhKTmMQkJjH5P3MNuJLqRwO4A+xkHrm3ibkOfMoSji8F+oBLwE3g1F/2cQn4/B/rWwusjSHoPnAmiR/Q9oG4yHUO7Aewaxx7A21fTxqYwKwQvufAdp/AkYQBOoHNQeOu2j0hnE+BNeAagf1AB/AJyPXKIrJbwD0CQ0ADWAauA3dT/SW3kaPAd+Ay8NQHfg9yHwM3CbS9agCPLYM7zD8JcegHHsewNdD2dQOrE/B73A+0CEIAjwj8vZ7A/hKgS9FfuMygPRl4H8G+h7avmdPkHpDzJbAtA5s3MIBe36QFtfT8AAuxBYHvfeD1CGzrQeAgqNYbGEB3Q2yREsC9Z8DBCGxPBgpUvSEngHs/gcNRYpP+nMQnKPAV6zfm+4E9I4BFYAtotgSV9jswBbhF6P9t3wL2lgCeDgOrBLLPQPLgKxCDIGj3XwHDM/CpG4g0v8R4npg+8eH+uM9IP8+UP4d5p4HhEPArsD9O70IuBwZS+BMH+HoA65QgQH5kZij+IvBrYBDY8gJfB3pmJQTrNJBJYtOxTt/xHEGAyT3ARvEfAfp1F1iR97ZbL5D3LF5pYcZ1IGfFsVHwj2PZF2h7HwK3Y9j3mDi+QNs/HvIxLJm/wO9h2nWgPDI6nC+I9zLh/7FQr8BO8c8C73UMYML/jyV/AHwn/P866JfqH2CP+P/lkO/xD+Bpkj8AEjrJqZ2k36/QRWJ/HKkFSlEQJX4UKwSt73IqSKAkkTj5pPj/8shHOjmYwN+0lCIgShxJpN8v0U1iN4UkUJKIknyi/P+2lHtBfBIHCYI8kf+3JQjCJvFPDtpeCgIhCZQmSvyvxH8Y9/qBvUn8k4O2VwEEQRIoTRwI/BbHviPQ9p4A+7PG9gY9w/MEhR5Yxwv8PYl/Ctb+LkbWzQh/FtgelLi/QNs7Zq0gCYIyRbz/I7Z9gbb3H3gQkpIgyBPs/0ls+wJt7w9gIY6/Scj6wY+IQNscuBJkfT42cHSQ/n+2/Efgchh/n+DLK7A+yFqIY2+Q6yewO+j6muYegb4gsT2CP2lB9h2BvjdB1mKc+4J8L4B8yPcBR0L+78gH3+CvU9z6D8/yQtNAQabwSqx7Au8ScD/I+4L8bw/ahfgYIIvfOIJvG7IWsNfA+wguB1hLwK8I1hJwrgT+Pgu/TWDbEvA+gqMGrCXhJwwsAVsSXKvArxJYw/oCGmBPAV8nsGYEl9gUYH2BDrBngK8bWDOCS2wKsL6glQG+fmDOCi6xKcD6glYG+HqBeSu4xKYA6wtaGeDrCeav4BKbAqwvaGWArzeYv4JLbAqwvqCVAb7+YAEL3/z0A60M8A0IC1j45qcfmI+Q/yNnCbJ+8COxqBXgGxIWuPjNEu/gmQPOCmeBP/pTfHUeqA/5DcC5YprYROCaBtwAzgNNP8R1oO6zH1oH6j77oXWg7rMfWhLv+BvAZYDzVWr/YRwdxjLxzZAdP3aB3TXgTQDrC3SAlgG+j8COmt1rBrAjA9yJY9sXaHs7gQcxbIuB7SsBZgLYZ0tQZ/8ewB4D+j2oPxHBLxP4twyA9w+wPcB+B8Z3EugBzgB/gN2/Yf5L4DmwAdSBI+A9sBkhdh7YTkCbBfZigJ3ADnASqAGvIzzbT/lH6PkbIZMYSQH+AL2eCgxPZfJwAAAAAElFTkSuQmCC';"
+                     style="width: 280px; max-width: 100%; border-radius: 1.2rem;">
+                <div class="img-caption">
+                    <i class="fas fa-id-card"></i> 嘉登 · 星流工程师 | 灾厄模组官方绘
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- 核心特性 -->
+    <!-- 嘉登实验室分布 -->
     <div>
-        <h2 class="section-title">精致 · 沉浸 · 灵动</h2>
-        <div class="features-grid">
-            <div class="feature-item glass-card">
-                <div class="feature-icon"><i class="fas fa-blur"></i></div>
-                <h3>毛玻璃质感</h3>
-                <p>高级 backdrop-filter 模糊层与柔和边框，营造通透的层次感，现代设计语言的核心表达。</p>
-            </div>
-            <div class="feature-item glass-card">
-                <div class="feature-icon"><i class="fas fa-fan"></i></div>
-                <h3>动态流光背景</h3>
-                <p>缓慢旋转的锥形渐变 + 呼吸光晕，让静态页面也拥有生命力，且不会干扰阅读。</p>
-            </div>
-            <div class="feature-item glass-card">
-                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3>全端响应适配</h3>
-                <p>无论是手机、平板还是大屏显示器，所有圆润卡片和布局都保持优雅形态。</p>
-            </div>
-            <div class="feature-item glass-card">
-                <div class="feature-icon"><i class="fas fa-palette"></i></div>
-                <h3>柔和配色系统</h3>
-                <p>深邃星空蓝紫渐变基底，配以冷调高光文字，色彩心理学上舒缓且专业。</p>
+        <div class="section-title">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>加密实验室 · 全球分布网络</span>
+        </div>
+        <div class="tech-card" style="padding: 1.2rem 1.5rem;">
+            <p style="margin-bottom: 0.8rem;"><i class="fas fa-chart-line"></i> 嘉登实验室生成于世界各关键生态群落，内含神秘电路、可疑镀层及嘉登研究日志。每个实验室均设有脉冲炮塔作为防御系统。</p>
+            <div class="lab-list">
+                <span class="lab-tag"><i class="fas fa-snowflake"></i> 冰雪苔原</span>
+                <span class="lab-tag"><i class="fas fa-leaf"></i> 丛林瘟疫</span>
+                <span class="lab-tag"><i class="fas fa-water"></i> 沉沦之海</span>
+                <span class="lab-tag"><i class="fas fa-meteor"></i> 小行星带</span>
+                <span class="lab-tag"><i class="fas fa-fire"></i> 硫火地狱</span>
+                <span class="lab-tag"><i class="fas fa-mountain"></i> 洞穴废弃工厂</span>
             </div>
         </div>
     </div>
 
-    <!-- 作品展示 / 概念画廊 -->
-    <h2 class="section-title">创意画廊</h2>
-    <div class="showcase">
-        <div class="art-card">
-            <div class="card-img"><i class="fas fa-cloud-moon"></i> 🌙</div>
-            <div class="card-content">
-                <h4>月下极简</h4>
-                <p>流动线条与朦胧光效，简约而不简单的视觉叙事。</p>
-                <span class="card-tag"><i class="fas fa-tag"></i> 视觉设计</span>
-            </div>
+    <!-- 嘉登日志精选：核心研究记录 -->
+    <div>
+        <div class="section-title">
+            <i class="fas fa-book-open"></i>
+            <span>嘉登日志 · 研究手稿解密</span>
         </div>
-        <div class="art-card">
-            <div class="card-img"><i class="fas fa-water"></i> 🌊</div>
-            <div class="card-content">
-                <h4>玻璃海</h4>
-                <p>通透层叠结构，像海水与玻璃的交响，唤起宁静感。</p>
-                <span class="card-tag"><i class="fas fa-code"></i> 前端交互</span>
+        <div class="logs-grid">
+            <!-- 低温材料 -->
+            <div class="log-card" style="border-left-color: #4aa3ff;">
+                <h3><i class="fas fa-icicles"></i> 低温材料 · 寒元矿</h3>
+                <p>大法师永冻所开发的奇异金属，虽似冰晶却比秘银合金更为柔韧。极具潜力的盔甲镀层材料，或可颠覆传统锻造工艺。</p>
+                <div class="log-excerpt">“寒元矿乍看像易碎的冰冻玻璃，但测试表明它制成的镀层极为强韧……我很可能会进一步询问其制造方法。”</div>
             </div>
-        </div>
-        <div class="art-card">
-            <div class="card-img"><i class="fas fa-crystal-ball"></i> ✨</div>
-            <div class="card-content">
-                <h4>水晶幻境</h4>
-                <p>丰富折射光效，结合动态光晕营造高级科技氛围。</p>
-                <span class="card-tag"><i class="fas fa-gem"></i> 品牌概念</span>
+            <!-- 瘟疫纳米 -->
+            <div class="log-card" style="border-left-color: #7a2eff;">
+                <h3><i class="fas fa-biohazard"></i> 瘟疫纳米机器 · 蜂巢思维</h3>
+                <p>融合病毒与纳米技术，意图控制生物思想。以机械蜂王作为宿主构建集群意识。亚利姆因此实验与嘉登决裂。</p>
+                <div class="log-excerpt">“有了机械蜂王作为主要宿主，那些接触瘟疫的生物都会与它相连……亚利姆谴责这些实验完全不人道。”</div>
+            </div>
+            <!-- 沉沦之海巨蛤 -->
+            <div class="log-card" style="border-left-color: #20cca0;">
+                <h3><i class="fas fa-fish"></i> 沉沦之海 · 传送巨蛤</h3>
+                <p>体型超常的巨型蛤类，依靠传送移动厚重的装甲身躯。嘉登对其体内的晶体生长和魔力来源抱有浓厚兴趣。</p>
+                <div class="log-excerpt">“它们依靠传送来转运那覆盖着重装甲的身体……远远观测的报告很可能存在误导。”</div>
+            </div>
+            <!-- 神明吞噬者装甲 -->
+            <div class="log-card" style="border-left-color: #ff6b4a;">
+                <h3><i class="fas fa-dragon"></i> 神明吞噬者 · 定制铠甲</h3>
+                <p>应亚利姆请求，为巨蛇锻造了一套来自其故乡次元的独特铠甲。嘉登借此机会窥探星际巨兽的奥秘。</p>
+                <div class="log-excerpt">“我使用来自他家乡的材料，锻造出高度耐用的铠甲……我对这头星际巨兽的了解比我所预期的要多。”</div>
+            </div>
+            <!-- 血肉墙研究 -->
+            <div class="log-card" style="border-left-color: #ff3388;">
+                <h3><i class="fas fa-fire"></i> 地狱造物 · 血肉墙</h3>
+                <p>由阿萨福勒大法师创造的巨大生物墙壁，不识痛苦与情感。嘉登好奇其释放后的影响。</p>
+                <div class="log-excerpt">“我对它被释放后对世界所产生的影响十分好奇……只要阿萨福勒存在，它就不可能被释放。”</div>
+            </div>
+            <!-- 跨次元旅行 -->
+            <div class="log-card" style="border-left-color: #c06eff;">
+                <h3><i class="fas fa-rocket"></i> 低轨道研究 · 深空执念</h3>
+                <p>对不同世界间的穿越旅行充满向往，希望突破当前技术桎梏抵达行星群之外。</p>
+                <div class="log-excerpt">“我希望有一天能抵达这片单纯行星群以外的地方……或许我会找到突破桎梏的方法。”</div>
             </div>
         </div>
     </div>
 
-    <!-- 引语区块 强化质感 -->
-    <div class="testimonial">
-        <i class="fas fa-quote-left"></i>
-        <p>“美，不仅是视觉的愉悦，更是界面与灵魂的对话。让每一个像素都传递温度。”</p>
-        <div style="margin-top: 12px;">—— 设计哲思 · 数字美学</div>
+    <!-- 星流巨械：终极造物 -->
+    <div>
+        <div class="section-title">
+            <i class="fas fa-robot"></i>
+            <span>终极造物 · 星流巨械军团</span>
+        </div>
+        <div class="machines-grid">
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fas fa-crosshairs"></i></div>
+                <h4>XS-01 阿尔忒弥斯</h4>
+                <p style="font-size:0.8rem;">双子星流之一，高机动轨道炮击单元</p>
+            </div>
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fas fa-bullseye"></i></div>
+                <h4>XS-03 阿波罗</h4>
+                <p style="font-size:0.8rem;">双子星流之一，热能集束打击平台</p>
+            </div>
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fas fa-infinity"></i></div>
+                <h4>XM-05 塔纳托斯</h4>
+                <p style="font-size:0.8rem;">末日巨虫形态，贯穿战场</p>
+            </div>
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fas fa-microchip"></i></div>
+                <h4>XF-09 阿瑞斯</h4>
+                <p style="font-size:0.8rem;">重型陆战要塞，火力覆盖</p>
+            </div>
+        </div>
+        <div class="tech-card" style="padding: 0.8rem 1.2rem; margin-top: -0.5rem;">
+            <p style="font-size:0.85rem;"><i class="fas fa-skull"></i> 特殊变体 · XB-∞ “赫卡忒” ：Get fixed boi种子专属替代路线，嘉登会以NPC形态观战，并在巨械被击败后与玩家正面对决。</p>
+        </div>
     </div>
 
-    <!-- 额外的 CTA 卡片 或 订阅区块 -->
-    <div class="glass-card" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1.8rem 2rem; gap: 1rem;">
-        <div>
-            <h3 style="font-size: 1.4rem; margin-bottom: 0.2rem;"><i class="fas fa-envelope-open-text"></i> 灵感快报</h3>
-            <p style="opacity: 0.8;">获取最新的设计模式与现代 CSS 技巧</p>
-        </div>
-        <div style="display: flex; gap: 12px;">
-            <input type="email" placeholder="您的电子邮箱" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 3rem; padding: 0.7rem 1.2rem; color: white; outline: none; backdrop-filter: blur(4px);">
-            <button class="btn-primary" style="border: none; cursor: pointer;">订阅</button>
+    <!-- 神秘引语 -->
+    <div class="quote-area">
+        <i class="fas fa-quote-right"></i>
+        <div class="quote-text">“我不沉溺于人类‘空闲时间’的观点。我所采取的每一步行动都是为了扩展我的科学知识，这就是我的目标。”</div>
+        <div style="font-size: 0.85rem; opacity: 0.7;">—— 嘉登，对求知欲的回应 </div>
+    </div>
+
+    <!-- 趣味问答彩蛋 -->
+    <div class="tech-card" style="padding: 1.2rem 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between;">
+            <div>
+                <i class="fas fa-comment-dots"></i> <strong>加密通讯 · 愚人节解明</strong>
+                <p style="font-size:0.8rem; margin-top:6px;">Q: 你能做一块烤奶酪吗？<br>A: 毫不费力。…这真的是人类想知道答案的那类问题？</p>
+            </div>
+            <div>
+                <span class="lab-tag"><i class="fas fa-font"></i> 偏好字体: Kenzo</span>
+                <span class="lab-tag"><i class="fas fa-gamepad"></i> 游玩《群星》用于模拟外交科学</span>
+            </div>
         </div>
     </div>
 
-    <!-- footer 区域 -->
+    <!-- 页脚 -->
     <footer>
-        <span>© 2025 AetherUI — 璃光设计体系 | 灵感源于自然与未来主义</span>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-dribbble"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
+        <span><i class="fas fa-microchip"></i> 灾厄模组 · 嘉登档案 · 意识永续 | 数据基于历代实验室日志与星流协定</span>
+        <span style="display: block; margin-top: 6px;">“当科学越过道德时，世界将为之震颤” —— 摘自瘟疫研究附录</span>
     </footer>
 </div>
 
-<!-- 轻微增加动态波纹效果 (鼠标跟随光晕，可选，增加美感和互动) -->
+<!-- 鼠标跟随粒子光效 -->
 <script>
     (function() {
-        // 增加一个微妙的鼠标光晕效果，提升科技感
-        const glowElement = document.createElement('div');
-        glowElement.style.position = 'fixed';
-        glowElement.style.width = '400px';
-        glowElement.style.height = '400px';
-        glowElement.style.borderRadius = '50%';
-        glowElement.style.background = 'radial-gradient(circle, rgba(120,160,255,0.2) 0%, rgba(120,160,255,0) 70%)';
-        glowElement.style.pointerEvents = 'none';
-        glowElement.style.zIndex = '9999';
-        glowElement.style.transform = 'translate(-50%, -50%)';
-        glowElement.style.transition = 'transform 0.05s linear';
-        glowElement.style.willChange = 'transform';
-        document.body.appendChild(glowElement);
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.width = '280px';
+        particle.style.height = '280px';
+        particle.style.borderRadius = '50%';
+        particle.style.background = 'radial-gradient(circle, rgba(0,200,255,0.12) 0%, rgba(0,150,255,0) 70%)';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '999';
+        particle.style.transform = 'translate(-50%, -50%)';
+        particle.style.filter = 'blur(35px)';
+        document.body.appendChild(particle);
         
-        let mouseX = 0, mouseY = 0;
-        let glowX = 0, glowY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        function animateGlow() {
-            glowX += (mouseX - glowX) * 0.12;
-            glowY += (mouseY - glowY) * 0.12;
-            glowElement.style.left = glowX + 'px';
-            glowElement.style.top = glowY + 'px';
-            requestAnimationFrame(animateGlow);
+        let mx = 0, my = 0, px = 0, py = 0;
+        document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+        function animate() {
+            px += (mx - px) * 0.1;
+            py += (my - py) * 0.1;
+            particle.style.left = px + 'px';
+            particle.style.top = py + 'px';
+            requestAnimationFrame(animate);
         }
-        animateGlow();
-        
-        // 优雅停用效果避免性能过载，移动端去除鼠标光晕? 保留也无妨
-        if ('ontouchstart' in window) {
-            glowElement.style.display = 'none';
-        }
-        
-        // 增加小小的console彩蛋
-        console.log("%c✨ 琉璃之境美化组件已激活 | 现代玻璃美学", "color: #9bbaff; font-size: 14px; font-weight: bold;");
+        animate();
+        if ('ontouchstart' in window) particle.style.display = 'none';
+        console.log("%c[嘉登协议] 星流档案已加载 | 实验室防御系统待机 | 嘉登图像已集成", "color: #00ccff; font-size: 12px; font-family: monospace;");
     })();
 </script>
 </body>
