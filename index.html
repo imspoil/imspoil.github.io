@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>嘉登 · 星流工程师 | 灾厄档案 · 反应堆小游戏</title>
+    <title>嘉登 · 星流工程师 | 灾厄档案 · 贪吃蛇小游戏</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -204,7 +204,7 @@
             line-height: 1.6;
         }
 
-        /* 新的个人介绍 - 特殊高亮 */
+        /* 个人介绍 - 特殊高亮 */
         .personal-bio {
             background: rgba(0, 0, 0, 0.45);
             border-radius: 1.2rem;
@@ -303,16 +303,15 @@
             font-size: 1.6rem;
         }
 
-        /* 小游戏专用样式 */
+        /* 贪吃蛇游戏专用样式 */
         .game-container {
             background: rgba(5, 10, 22, 0.7);
             backdrop-filter: blur(8px);
             border-radius: 1.8rem;
-            padding: 1.8rem;
+            padding: 1.5rem;
             margin: 1.5rem 0 2rem;
             text-align: center;
             border: 1px solid rgba(0, 180, 255, 0.4);
-            transition: 0.2s;
         }
         .game-title {
             font-size: 1.4rem;
@@ -323,66 +322,66 @@
             justify-content: center;
             gap: 10px;
         }
-        .energy-bar-bg {
-            width: 100%;
-            height: 30px;
-            background: #1e2a3a;
-            border-radius: 30px;
-            overflow: hidden;
-            margin: 1.2rem 0;
-            border: 1px solid #2c6d96;
+        .snake-canvas {
+            background-color: #0a1022;
+            border: 2px solid #00ccff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,200,255,0.3);
+            margin: 0 auto;
+            display: block;
         }
-        .energy-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #00ccff, #a855f7);
-            border-radius: 30px;
-            transition: width 0.1s linear;
-            box-shadow: 0 0 8px #00ccff;
+        .game-controls {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .energy-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            font-family: monospace;
-            margin: 0.5rem 0;
-        }
-        .game-button {
+        .snake-btn {
             background: linear-gradient(135deg, #00aaff, #6a2eff);
             border: none;
-            padding: 12px 32px;
-            font-size: 1.2rem;
+            padding: 8px 20px;
+            font-size: 1rem;
             font-weight: bold;
-            border-radius: 60px;
+            border-radius: 40px;
             color: white;
             cursor: pointer;
-            margin: 15px 0;
             transition: 0.1s linear;
-            box-shadow: 0 0 12px rgba(0,170,255,0.4);
             font-family: monospace;
         }
-        .game-button:active {
+        .snake-btn:active {
             transform: scale(0.96);
         }
-        .game-message {
-            margin-top: 0.8rem;
-            font-size: 0.9rem;
+        .score-board {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-family: monospace;
+            color: #aaffdd;
+        }
+        .game-status {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
             color: #b0d4ff;
-            min-height: 60px;
+            min-height: 40px;
         }
-        .reset-btn {
-            background: transparent;
+        .direction-panel {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .dir-btn {
+            background: rgba(0, 30, 50, 0.8);
             border: 1px solid #00ccff;
-            padding: 6px 18px;
             border-radius: 30px;
-            background: rgba(0,0,0,0.4);
+            padding: 6px 14px;
+            color: white;
             cursor: pointer;
-            margin-left: 12px;
-            font-size: 0.8rem;
-            color: #cceeff;
+            font-size: 1rem;
+            transition: 0.1s;
         }
-        .reset-btn:hover {
-            background: #00ccff20;
-            border-color: #ffffff;
+        .dir-btn:active {
+            background: #00ccff40;
         }
 
         .lab-list {
@@ -493,8 +492,8 @@
             .draedon-image { width: 220px; height: 220px; }
             .section-title { font-size: 1.4rem;}
             .copy-toast { white-space: nowrap; font-size: 0.8rem; padding: 6px 18px;}
-            .game-button { padding: 8px 20px; font-size: 1rem; }
-            .personal-bio { font-size: 0.85rem; }
+            .snake-canvas { width: 95%; height: auto; }
+            .dir-btn { padding: 4px 12px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -518,16 +517,15 @@
         <div class="clickable-link" data-wiki-link="true"><i class="fas fa-satellite-dish" style="color:#00ccff;"></i></div>
     </nav>
 
-    <!-- Hero 信息区 + 嘉登图片（Base64图像）-->
+    <!-- Hero 信息区 + 嘉登图片 -->
     <div class="hero">
         <div class="hero-info">
             <div class="hero-badge clickable-link" data-wiki-link="true">
                 <i class="fas fa-brain"></i> 意识上传 · 永恒求知者
             </div>
-            <h1><span class="gradient-name">嘉登</span><br>首席科学工程师</h1>
-            <div class="title-tag">✦ 星流巨械之父 | 亚利姆麾下首席科学家 ✦</div>
+            <h1><span class="gradient-name">嘉登</span><br><span style="font-size:2rem;">及时享乐</span></h1>
+            <div class="title-tag">✦ 星流巨械之父 | 亚利姆麾下首席废人 ✦</div>
             
-            <!-- 修改后的个人介绍，完全按照用户描述 -->
             <div class="personal-bio">
                 <i class="fas fa-heart" style="color:#ff88bb;"></i> <strong>◆ 个人配置 ◆</strong><br>
                 🎮 galgame重度依赖者 &nbsp;|&nbsp; 🌿 泰拉瑞亚狂热爱好者<br>
@@ -558,7 +556,7 @@
         </div>
     </div>
 
-    <!-- 实验室分布（保留原风格，可点击跳转） -->
+    <!-- 实验室分布 -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
             <i class="fas fa-map-marker-alt"></i>
@@ -577,30 +575,35 @@
         </div>
     </div>
 
-    <!-- 小游戏区域：星流反应堆 -->
+    <!-- 贪吃蛇小游戏区域 -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
             <i class="fas fa-gamepad"></i>
-            <span>星流反应堆 · 能量实验</span>
+            <span>星流贪吃蛇 · 经典复刻</span>
         </div>
         <div class="game-container">
             <div class="game-title">
-                <i class="fas fa-bolt"></i> 超频充能协议
-                <button class="reset-btn" id="resetGameBtn">重新启动</button>
+                <i class="fas fa-crown"></i> 贪吃蛇 · 核心协议
             </div>
-            <div class="energy-bar-bg">
-                <div class="energy-fill" id="energyFill"></div>
+            <canvas id="snakeCanvas" class="snake-canvas" width="400" height="400"></canvas>
+            <div class="game-controls">
+                <button class="snake-btn" id="startGameBtn">▶ 开始游戏</button>
+                <button class="snake-btn" id="pauseGameBtn">⏸ 暂停</button>
+                <button class="snake-btn" id="resetGameBtn">🔄 重置</button>
             </div>
-            <div class="energy-text" id="energyPercent">0%</div>
-            <button class="game-button" id="chargeBtn"><i class="fas fa-microchip"></i> 注入能量</button>
-            <div class="game-message" id="gameMsg">
-                点击「注入能量」为星流核心充能！<br>
-                能量会自然衰减，充满100%即可完成实验。
+            <div class="score-board">🐍 当前得分: <span id="scoreValue">0</span> &nbsp;&nbsp;|&nbsp; 最高分: <span id="highScoreValue">0</span></div>
+            <div class="game-status" id="gameStatusMsg">按「开始游戏」或直接使用方向键 / WASD</div>
+            <div class="direction-panel">
+                <div class="dir-btn" data-dir="up">▲ 上</div>
+                <div class="dir-btn" data-dir="left">◀ 左</div>
+                <div class="dir-btn" data-dir="down">▼ 下</div>
+                <div class="dir-btn" data-dir="right">▶ 右</div>
             </div>
+            <p style="font-size:0.7rem; margin-top:10px; opacity:0.6;">↑ ↓ ← → 或 WASD 控制移动</p>
         </div>
     </div>
 
-    <!-- 加密通讯区块 (整体可点击跳转，但内部的QQ号区域不受影响) -->
+    <!-- 加密通讯区块 -->
     <div class="tech-card clickable-link" style="padding: 1.2rem 1.5rem; margin-bottom: 1rem;" data-wiki-link="true">
         <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between;">
             <div>
@@ -614,7 +617,7 @@
         </div>
     </div>
 
-    <!-- QQ 联系方式：独立区域，点击复制QQ号，不跳转 -->
+    <!-- QQ 联系方式 -->
     <div class="contact-qq">
         <div class="qq-card" id="qqCopyBtn">
             <i class="fab fa-qq"></i>
@@ -625,7 +628,7 @@
     </div>
 
     <footer class="clickable-link" data-wiki-link="true">
-        <span><i class="fas fa-microchip"></i> 灾厄模组 · 嘉登档案 · 二次元特化版 | 数据基于历代实验室日志与星流协定</span>
+        <span><i class="fas fa-microchip"></i> 灾厄模组 · 嘉登档案 · 贪吃蛇特别版 | 数据基于历代实验室日志与星流协定</span>
         <span style="display: block; margin-top: 6px;">“没有h游无法活下去” —— 摘自嘉登最新心理评估报告附录</span>
     </footer>
 </div>
@@ -635,177 +638,186 @@
 
 <script>
     (function() {
-        // ---------- 小游戏逻辑 (星流反应堆) ----------
-        let currentEnergy = 0;
-        let decayInterval = null;
-        let gameActive = true;
-        let gameWinFlag = false;
-
-        const energyFill = document.getElementById('energyFill');
-        const energyPercent = document.getElementById('energyPercent');
-        const chargeBtn = document.getElementById('chargeBtn');
-        const gameMsgDiv = document.getElementById('gameMsg');
-        const resetBtn = document.getElementById('resetGameBtn');
-
-        function updateUI() {
-            let percent = Math.min(100, Math.max(0, currentEnergy));
-            energyFill.style.width = percent + '%';
-            energyPercent.innerText = Math.floor(percent) + '%';
-            
-            if (percent >= 100 && !gameWinFlag) {
-                gameWinFlag = true;
-                if (decayInterval) clearInterval(decayInterval);
-                gameActive = false;
-                gameMsgDiv.innerHTML = '<span style="color:#aaffdd;">✅ 星流核心已完全充能！实验成功。嘉登意识体表示赞赏。<br>点击「重新启动」继续新的实验。</span>';
-                chargeBtn.disabled = true;
-                chargeBtn.style.opacity = '0.5';
-                chargeBtn.style.cursor = 'default';
-            } else if (percent <= 0 && gameActive && !gameWinFlag) {
-                if (!gameWinFlag) {
-                    gameMsgDiv.innerHTML = '⚠️ 能量过低！核心即将休眠，请快速注入能量！';
-                }
-            } else if (!gameWinFlag && gameActive) {
-                if (percent < 30) gameMsgDiv.innerHTML = '⚠️ 能量不足，星流反应堆效率低下，请注入更多能量。';
-                else if (percent < 70) gameMsgDiv.innerHTML = '🔋 能量稳定，继续充能以完成协议。';
-                else gameMsgDiv.innerHTML = '⚡ 能量逼近临界点！再坚持一下！';
+        // ---------- 贪吃蛇游戏逻辑 ----------
+        const canvas = document.getElementById('snakeCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreSpan = document.getElementById('scoreValue');
+        const highScoreSpan = document.getElementById('highScoreValue');
+        const statusMsg = document.getElementById('gameStatusMsg');
+        
+        // 游戏配置
+        const gridSize = 20;    // 20x20 网格
+        const cellSize = canvas.width / gridSize; // 20px
+        
+        let snake = [{x: 10, y: 10}];
+        let direction = 'right';
+        let nextDirection = 'right';
+        let food = {x: 15, y: 10};
+        let score = 0;
+        let highScore = localStorage.getItem('snakeHighScore') ? parseInt(localStorage.getItem('snakeHighScore')) : 0;
+        let gameLoop = null;
+        let gameRunning = false;
+        let gamePaused = false;
+        
+        highScoreSpan.innerText = highScore;
+        
+        // 随机生成食物 (避开蛇身)
+        function generateRandomFood() {
+            const totalCells = gridSize * gridSize;
+            if (snake.length >= totalCells) {
+                // 胜利
+                if (gameLoop) clearInterval(gameLoop);
+                gameRunning = false;
+                statusMsg.innerText = '✨ 完美通关！ 你战胜了贪吃蛇！ ✨';
+                return false;
             }
-        }
-
-        function addEnergy(amount) {
-            if (!gameActive || gameWinFlag) return;
-            let newVal = currentEnergy + amount;
-            if (newVal >= 100) {
-                currentEnergy = 100;
-                updateUI();
-                return;
-            }
-            currentEnergy = newVal;
-            updateUI();
-        }
-
-        function decayEnergy() {
-            if (!gameActive || gameWinFlag) return;
-            if (currentEnergy > 0) {
-                let decrease = Math.max(1, Math.floor(currentEnergy * 0.02) + 1);
-                currentEnergy = Math.max(0, currentEnergy - decrease);
-                updateUI();
-                if (currentEnergy <= 0 && !gameWinFlag) {
-                    gameMsgDiv.innerHTML = '💀 反应堆停止运转，实验失败。点击「重新启动」继续挑战。<br>嘉登日志: 能量管理也是科学的一部分。';
-                    gameActive = false;
-                    if (decayInterval) clearInterval(decayInterval);
-                    chargeBtn.disabled = true;
-                    chargeBtn.style.opacity = '0.5';
+            const snakeSet = new Set(snake.map(seg => `${seg.x},${seg.y}`));
+            let freeCells = [];
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    if (!snakeSet.has(`${i},${j}`)) freeCells.push({x: i, y: j});
                 }
             }
+            if (freeCells.length === 0) return false;
+            const rand = Math.floor(Math.random() * freeCells.length);
+            food = freeCells[rand];
+            return true;
         }
-
-        function startGame(initialEnergy = 0) {
-            if (decayInterval) clearInterval(decayInterval);
-            gameActive = true;
-            gameWinFlag = false;
-            currentEnergy = Math.min(100, Math.max(0, initialEnergy));
-            updateUI();
-            chargeBtn.disabled = false;
-            chargeBtn.style.opacity = '1';
-            gameMsgDiv.innerHTML = '⚡ 反应堆激活。点击「注入能量」进行充能，充满100%完成实验！能量会随时间衰减。';
-            decayInterval = setInterval(() => {
-                decayEnergy();
-            }, 800);
+        
+        // 绘制游戏
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // 绘制网格线
+            ctx.strokeStyle = '#1e4a6e';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= gridSize; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * cellSize, 0);
+                ctx.lineTo(i * cellSize, canvas.height);
+                ctx.stroke();
+                ctx.moveTo(0, i * cellSize);
+                ctx.lineTo(canvas.width, i * cellSize);
+                ctx.stroke();
+            }
+            // 绘制食物
+            ctx.fillStyle = '#ff66aa';
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = '#ff44aa';
+            ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize - 1, cellSize - 1);
+            ctx.shadowBlur = 0;
+            // 绘制蛇
+            for (let i = 0; i < snake.length; i++) {
+                const seg = snake[i];
+                if (i === 0) {
+                    ctx.fillStyle = '#00ddff';
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = '#00ccff';
+                } else {
+                    ctx.fillStyle = '#3a86ff';
+                    ctx.shadowBlur = 2;
+                }
+                ctx.fillRect(seg.x * cellSize, seg.y * cellSize, cellSize - 1, cellSize - 1);
+            }
+            ctx.shadowBlur = 0;
         }
-
+        
+        // 移动蛇
+        function moveSnake() {
+            if (!gameRunning || gamePaused) return false;
+            direction = nextDirection;
+            let newHead = { ...snake[0] };
+            switch (direction) {
+                case 'right': newHead.x += 1; break;
+                case 'left': newHead.x -= 1; break;
+                case 'up': newHead.y -= 1; break;
+                case 'down': newHead.y += 1; break;
+            }
+            // 检查是否吃到食物
+            const willEat = (newHead.x === food.x && newHead.y === food.y);
+            // 执行移动
+            if (willEat) {
+                snake.unshift(newHead);
+                score++;
+                scoreSpan.innerText = score;
+                if (score > highScore) {
+                    highScore = score;
+                    highScoreSpan.innerText = highScore;
+                    localStorage.setItem('snakeHighScore', highScore);
+                }
+                const success = generateRandomFood();
+                if (!success) {
+                    // 胜利
+                    if (gameLoop) clearInterval(gameLoop);
+                    gameRunning = false;
+                    statusMsg.innerText = '🎉 奇迹！ 你填满了整个网格， 嘉登点赞 🎉';
+                    return false;
+                }
+            } else {
+                snake.unshift(newHead);
+                snake.pop();
+            }
+            // 碰撞检测（边界 & 自身）
+            const head = snake[0];
+            if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize) {
+                gameOver();
+                return false;
+            }
+            for (let i = 1; i < snake.length; i++) {
+                if (snake[i].x === head.x && snake[i].y === head.y) {
+                    gameOver();
+                    return false;
+                }
+            }
+            draw();
+            return true;
+        }
+        
+        function gameOver() {
+            if (gameLoop) clearInterval(gameLoop);
+            gameRunning = false;
+            statusMsg.innerText = `💀 游戏结束！ 得分: ${score}。 点击「开始游戏」重新挑战 💀`;
+        }
+        
+        function startGame() {
+            if (gameLoop) clearInterval(gameLoop);
+            // 重置状态
+            snake = [{x: 10, y: 10}];
+            direction = 'right';
+            nextDirection = 'right';
+            score = 0;
+            scoreSpan.innerText = '0';
+            gameRunning = true;
+            gamePaused = false;
+            statusMsg.innerText = '游戏中... 使用方向键或WASD控制';
+            // 生成有效食物
+            const snakeSet = new Set(snake.map(seg => `${seg.x},${seg.y}`));
+            let freeCells = [];
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    if (!snakeSet.has(`${i},${j}`)) freeCells.push({x: i, y: j});
+                }
+            }
+            if (freeCells.length) food = freeCells[Math.floor(Math.random() * freeCells.length)];
+            else food = {x: 15, y: 10};
+            draw();
+            gameLoop = setInterval(() => {
+                moveSnake();
+            }, 130);
+        }
+        
+        function pauseGame() {
+            if (!gameRunning) return;
+            gamePaused = !gamePaused;
+            statusMsg.innerText = gamePaused ? '⏸ 游戏暂停， 按继续按钮或再次暂停恢复' : '▶ 游戏中...';
+        }
+        
         function resetGame() {
-            if (decayInterval) clearInterval(decayInterval);
-            startGame(0);
-        }
-
-        if (chargeBtn) {
-            chargeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (!gameActive || gameWinFlag) return;
-                addEnergy(12);
-                chargeBtn.style.transform = 'scale(0.96)';
-                setTimeout(() => { if(chargeBtn) chargeBtn.style.transform = ''; }, 100);
-            });
-        }
-        if (resetBtn) {
-            resetBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                resetGame();
-            });
-        }
-        startGame(0);
-
-        // ---------- 维基跳转（除qq区域外）----------
-        const wikiBaseUrl = 'https://calamity.huijiwiki.com/wiki/';
-        const wikiLinkElements = document.querySelectorAll('[data-wiki-link="true"]');
-        wikiLinkElements.forEach(elem => {
-            elem.addEventListener('click', (event) => {
-                event.stopPropagation();
-                window.open(wikiBaseUrl, '_blank');
-            });
-        });
-
-        // 2. QQ 复制 + 提示功能
-        const qqCard = document.getElementById('qqCopyBtn');
-        const toast = document.getElementById('copyToast');
-        const qqNumber = '1163747186';
-        
-        function showCopyMessage() {
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 1800);
+            if (gameLoop) clearInterval(gameLoop);
+            startGame();
         }
         
-        async function copyQQNumber() {
-            try {
-                await navigator.clipboard.writeText(qqNumber);
-                showCopyMessage();
-            } catch (err) {
-                const textarea = document.createElement('textarea');
-                textarea.value = qqNumber;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showCopyMessage();
-            }
-        }
-        
-        if (qqCard) {
-            qqCard.addEventListener('click', (e) => {
-                e.stopPropagation();
-                copyQQNumber();
-            });
-        }
-        
-        // 3. 动态鼠标光晕效果
-        const particle = document.createElement('div');
-        particle.style.position = 'fixed';
-        particle.style.width = '280px';
-        particle.style.height = '280px';
-        particle.style.borderRadius = '50%';
-        particle.style.background = 'radial-gradient(circle, rgba(0,200,255,0.12) 0%, rgba(0,150,255,0) 70%)';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '999';
-        particle.style.transform = 'translate(-50%, -50%)';
-        particle.style.filter = 'blur(35px)';
-        document.body.appendChild(particle);
-        
-        let mx = 0, my = 0, px = 0, py = 0;
-        document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
-        function animate() {
-            px += (mx - px) * 0.1;
-            py += (my - py) * 0.1;
-            particle.style.left = px + 'px';
-            particle.style.top = py + 'px';
-            requestAnimationFrame(animate);
-        }
-        animate();
-        if ('ontouchstart' in window) particle.style.display = 'none';
-        
-        console.log("%c[嘉登协议] 二次元特化档案已加载 | 小游戏在线 | QQ复制与维基跳转模块活跃", "color: #ff88bb; font-size: 12px; font-family: monospace;");
-    })();
-</script>
-</body>
-</html>
+        // 改变方向
+        function setDirection(newDir) {
+            if (!gameRunning || gamePaused) return;
+            const opposite = {
+                'up': 'down', 'down': 'up
