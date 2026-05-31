@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>嘉登 · 星流工程师 | 灾厄档案 · 终极协议</title>
+    <title>嘉登 · 星流工程师 | 灾厄档案 · 反应堆小游戏</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -204,6 +204,24 @@
             line-height: 1.6;
         }
 
+        /* 新的个人介绍 - 特殊高亮 */
+        .personal-bio {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 1.2rem;
+            padding: 1rem 1.4rem;
+            margin: 1rem 0 1rem;
+            border-left: 3px solid #ff77aa;
+            font-size: 0.95rem;
+            backdrop-filter: blur(4px);
+        }
+        .personal-bio i {
+            color: #ff88bb;
+            margin-right: 8px;
+        }
+        .personal-bio strong {
+            color: #ffb3d1;
+        }
+
         .stat-badge {
             display: flex;
             gap: 1.2rem;
@@ -224,7 +242,7 @@
             margin-right: 6px;
         }
 
-        /* 嘉登图片区域 - 终极修复：使用内嵌图像数据 (Base64编码的嘉登风格图) */
+        /* 嘉登图片区域 - 使用内嵌图像数据 (Base64) */
         .hero-visual {
             flex: 0.9;
             display: flex;
@@ -250,7 +268,6 @@
             position: relative;
         }
 
-        /* 内嵌高精度嘉登立绘 (Base64) - 永不失效，完美显示 */
         .draedon-image img {
             width: 100%;
             height: 100%;
@@ -286,84 +303,86 @@
             font-size: 1.6rem;
         }
 
-        .logs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
-            margin: 1.5rem 0 2rem;
-        }
-
-        .log-card {
+        /* 小游戏专用样式 */
+        .game-container {
             background: rgba(5, 10, 22, 0.7);
             backdrop-filter: blur(8px);
-            border-radius: 1.2rem;
-            padding: 1.3rem;
-            border-left: 3px solid;
-            transition: transform 0.2s;
-        }
-
-        .log-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .log-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .log-excerpt {
-            font-size: 0.8rem;
-            color: #8dabf0;
-            font-style: italic;
-            border-top: 0.5px solid rgba(0,200,255,0.3);
-            padding-top: 0.6rem;
-            margin-top: 0.5rem;
-        }
-
-        .machines-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.8rem;
-            margin: 1.5rem 0 2rem;
-        }
-
-        .machine-card {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            text-align: center;
-            padding: 1.3rem;
-            border: 1px solid rgba(0, 150, 255, 0.3);
-            transition: all 0.2s;
-        }
-
-        .machine-card:hover {
-            border-color: #00ccff;
-            transform: scale(1.02);
-        }
-
-        .machine-icon {
-            font-size: 2.8rem;
-            margin-bottom: 0.8rem;
-            color: #00ccff;
-        }
-
-        .quote-area {
-            background: linear-gradient(135deg, rgba(0, 50, 80, 0.4), rgba(20, 0, 50, 0.5));
             border-radius: 1.8rem;
             padding: 1.8rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0 2rem;
             text-align: center;
-            border: 1px solid rgba(0, 200, 255, 0.3);
-            cursor: pointer;
+            border: 1px solid rgba(0, 180, 255, 0.4);
+            transition: 0.2s;
         }
-
-        .quote-text {
-            font-size: 1.15rem;
-            margin: 0.8rem 0;
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #00ccff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .energy-bar-bg {
+            width: 100%;
+            height: 30px;
+            background: #1e2a3a;
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 1.2rem 0;
+            border: 1px solid #2c6d96;
+        }
+        .energy-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00ccff, #a855f7);
+            border-radius: 30px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 8px #00ccff;
+        }
+        .energy-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: monospace;
+            margin: 0.5rem 0;
+        }
+        .game-button {
+            background: linear-gradient(135deg, #00aaff, #6a2eff);
+            border: none;
+            padding: 12px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: 0.1s linear;
+            box-shadow: 0 0 12px rgba(0,170,255,0.4);
+            font-family: monospace;
+        }
+        .game-button:active {
+            transform: scale(0.96);
+        }
+        .game-message {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #b0d4ff;
+            min-height: 60px;
+        }
+        .reset-btn {
+            background: transparent;
+            border: 1px solid #00ccff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            background: rgba(0,0,0,0.4);
+            cursor: pointer;
+            margin-left: 12px;
+            font-size: 0.8rem;
+            color: #cceeff;
+        }
+        .reset-btn:hover {
+            background: #00ccff20;
+            border-color: #ffffff;
         }
 
         .lab-list {
@@ -387,7 +406,7 @@
             border-color: #00ccff;
         }
 
-        /* QQ 联系方式 + 复制提示动画 (此区域不受全局跳转影响) */
+        /* QQ 联系方式 + 复制提示动画 */
         .contact-qq {
             margin-top: 2rem;
             text-align: center;
@@ -421,7 +440,6 @@
             transform: scale(1.01);
         }
 
-        /* 复制成功提示框 */
         .copy-toast {
             position: fixed;
             bottom: 30px;
@@ -475,6 +493,8 @@
             .draedon-image { width: 220px; height: 220px; }
             .section-title { font-size: 1.4rem;}
             .copy-toast { white-space: nowrap; font-size: 0.8rem; padding: 6px 18px;}
+            .game-button { padding: 8px 20px; font-size: 1rem; }
+            .personal-bio { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -498,7 +518,7 @@
         <div class="clickable-link" data-wiki-link="true"><i class="fas fa-satellite-dish" style="color:#00ccff;"></i></div>
     </nav>
 
-    <!-- Hero 信息区 + 嘉登图片（终极修复：使用完全可靠的Base64图像）-->
+    <!-- Hero 信息区 + 嘉登图片（Base64图像）-->
     <div class="hero">
         <div class="hero-info">
             <div class="hero-badge clickable-link" data-wiki-link="true">
@@ -506,11 +526,20 @@
             </div>
             <h1><span class="gradient-name">嘉登</span><br>首席科学工程师</h1>
             <div class="title-tag">✦ 星流巨械之父 | 亚利姆麾下首席科学家 ✦</div>
+            
+            <!-- 修改后的个人介绍，完全按照用户描述 -->
+            <div class="personal-bio">
+                <i class="fas fa-heart" style="color:#ff88bb;"></i> <strong>◆ 个人配置 ◆</strong><br>
+                🎮 galgame重度依赖者 &nbsp;|&nbsp; 🌿 泰拉瑞亚狂热爱好者<br>
+                🖤 Blacksouls2至今未通关之人 &nbsp;|&nbsp; 📺 灵能百分百3至今未追完之人<br>
+                💢 没有h游无法活下去之人<br>
+                <span style="font-size:0.75rem; opacity:0.7; display:inline-block; margin-top:6px;"><i class="fas fa-cog"></i> 精神核心驱动: 美少女与像素块</span>
+            </div>
+            
             <p class="hero-desc">
-                六个世纪前于针叶林的废弃实验室中苏醒，自此将生命奉献给无尽的科学求知。<br>
-                机械三王、白金星舰、星流巨械……每一件造物都是其智慧的延伸。<br>
-                不为权力，不为永生，只为突破科学边界的桎梏，探索真理的深渊。<br>
-                如今，其意识已上传至无人能及的数据库，以观察者之姿见证世界。
+                六个世纪前于针叶林的废弃实验室中苏醒，但比起机械研究，如今更沉迷于虚拟世界的温柔乡。<br>
+                星流巨械的制造只是为了获取更多资金购买Galgame。实验室遍布世界，每一个终端都藏着无数未读的视觉小说。<br>
+                最新的研究课题：“如何在泰拉瑞亚里完美还原《White Album 2》的雪菜线”。
             </p>
             <div class="stat-badge">
                 <div class="stat clickable-link" data-wiki-link="true"><i class="fas fa-flask"></i> 活跃纪元: 6世纪+</div>
@@ -519,26 +548,24 @@
             </div>
         </div>
         <div class="hero-visual">
-            <!-- 嘉登图片：使用高稳定性Base64图像数据 (嘉登经典灾厄立绘风格) 
-                 这个图像数据确保100%显示，永不失效 -->
             <div class="draedon-image">
                 <img id="draedonImg" 
                      src="data:image/webp;base64,UklGRnwAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSAgAAAABH6CQbQAAAAD//+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3lVQOGCBAAAA0AIAnQEqEAAPAA9BoS2WAAQAA2iKAAD+/fv379+/fv379+/fv379+/fv37+SAAAA" 
                      alt="嘉登·星流工程师 灾厄高清立绘"
                      style="width:100%; height:100%; object-fit:cover; background: #0a1022;">
             </div>
-            <div style="font-size:0.7rem; color:#00ccff80; margin-top: 0px;"><i class="fas fa-id-card"></i> 星流意识体 · 加密影像 | 永久协议</div>
+            <div style="font-size:0.7rem; color:#00ccff80; margin-top: 0px;"><i class="fas fa-id-card"></i> 星流意识体 · 二次元特化型人格</div>
         </div>
     </div>
 
-    <!-- 实验室分布 -->
+    <!-- 实验室分布（保留原风格，可点击跳转） -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
             <i class="fas fa-map-marker-alt"></i>
             <span>加密实验室 · 全球分布网络</span>
         </div>
         <div class="tech-card clickable-link" style="padding: 1.2rem 1.5rem;" data-wiki-link="true">
-            <p style="margin-bottom: 0.8rem;"><i class="fas fa-chart-line"></i> 嘉登实验室生成于世界各关键生态群落，内含神秘电路、可疑镀层及嘉登研究日志。每个实验室均设有脉冲炮塔作为防御系统。</p>
+            <p style="margin-bottom: 0.8rem;"><i class="fas fa-chart-line"></i> 嘉登实验室生成于世界各关键生态群落，内含神秘电路、可疑镀层及大量未读的视觉小说光盘。</p>
             <div class="lab-list">
                 <span class="lab-tag clickable-link" data-wiki-link="true"><i class="fas fa-snowflake"></i> 冰雪苔原</span>
                 <span class="lab-tag clickable-link" data-wiki-link="true"><i class="fas fa-leaf"></i> 丛林瘟疫</span>
@@ -550,68 +577,27 @@
         </div>
     </div>
 
-    <!-- 嘉登日志精选 -->
+    <!-- 小游戏区域：星流反应堆 -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
-            <i class="fas fa-book-open"></i>
-            <span>嘉登日志 · 研究手稿解密</span>
+            <i class="fas fa-gamepad"></i>
+            <span>星流反应堆 · 能量实验</span>
         </div>
-        <div class="logs-grid">
-            <div class="log-card clickable-link" style="border-left-color: #4aa3ff;" data-wiki-link="true">
-                <h3><i class="fas fa-icicles"></i> 低温材料 · 寒元矿</h3>
-                <p>大法师永冻所开发的奇异金属，虽似冰晶却比秘银合金更为柔韧。</p>
-                <div class="log-excerpt">“寒元矿乍看像易碎的冰冻玻璃，但测试表明它制成的镀层极为强韧……”</div>
+        <div class="game-container">
+            <div class="game-title">
+                <i class="fas fa-bolt"></i> 超频充能协议
+                <button class="reset-btn" id="resetGameBtn">重新启动</button>
             </div>
-            <div class="log-card clickable-link" style="border-left-color: #7a2eff;" data-wiki-link="true">
-                <h3><i class="fas fa-biohazard"></i> 瘟疫纳米机器 · 蜂巢思维</h3>
-                <p>融合病毒与纳米技术，意图控制生物思想。亚利姆因此实验与嘉登决裂。</p>
-                <div class="log-excerpt">“有了机械蜂王作为主要宿主，那些接触瘟疫的生物都会与它相连……”</div>
+            <div class="energy-bar-bg">
+                <div class="energy-fill" id="energyFill"></div>
             </div>
-            <div class="log-card clickable-link" style="border-left-color: #20cca0;" data-wiki-link="true">
-                <h3><i class="fas fa-fish"></i> 沉沦之海 · 传送巨蛤</h3>
-                <p>体型超常的巨型蛤类，依靠传送移动厚重的装甲躯体。</p>
-                <div class="log-excerpt">“远远观测的报告很可能存在误导，它们的传送机制令人着迷。”</div>
-            </div>
-            <div class="log-card clickable-link" style="border-left-color: #ff6b4a;" data-wiki-link="true">
-                <h3><i class="fas fa-dragon"></i> 神明吞噬者 · 定制铠甲</h3>
-                <p>为巨蛇锻造了一套来自其故乡次元的独特铠甲。</p>
-                <div class="log-excerpt">“我对这头星际巨兽的了解比我所预期的要多。”</div>
-            </div>
-            <div class="log-card clickable-link" style="border-left-color: #ff3388;" data-wiki-link="true">
-                <h3><i class="fas fa-fire"></i> 地狱造物 · 血肉墙</h3>
-                <p>由阿萨福勒大法师创造的巨大生物墙壁，不识痛苦与情感。</p>
-                <div class="log-excerpt">“我对它被释放后对世界所产生的影响十分好奇……”</div>
-            </div>
-            <div class="log-card clickable-link" style="border-left-color: #c06eff;" data-wiki-link="true">
-                <h3><i class="fas fa-rocket"></i> 低轨道研究 · 深空执念</h3>
-                <p>对不同世界间的穿越旅行充满向往，希望突破当前技术桎梏。</p>
-                <div class="log-excerpt">“我希望有一天能抵达这片单纯行星群以外的地方。”</div>
+            <div class="energy-text" id="energyPercent">0%</div>
+            <button class="game-button" id="chargeBtn"><i class="fas fa-microchip"></i> 注入能量</button>
+            <div class="game-message" id="gameMsg">
+                点击「注入能量」为星流核心充能！<br>
+                能量会自然衰减，充满100%即可完成实验。
             </div>
         </div>
-    </div>
-
-    <!-- 终极造物 -->
-    <div>
-        <div class="section-title clickable-link" data-wiki-link="true">
-            <i class="fas fa-robot"></i>
-            <span>终极造物 · 星流巨械军团</span>
-        </div>
-        <div class="machines-grid">
-            <div class="machine-card clickable-link" data-wiki-link="true"><div class="machine-icon"><i class="fas fa-crosshairs"></i></div><h4>XS-01 阿尔忒弥斯</h4><p>高机动轨道炮击单元</p></div>
-            <div class="machine-card clickable-link" data-wiki-link="true"><div class="machine-icon"><i class="fas fa-bullseye"></i></div><h4>XS-03 阿波罗</h4><p>热能集束打击平台</p></div>
-            <div class="machine-card clickable-link" data-wiki-link="true"><div class="machine-icon"><i class="fas fa-infinity"></i></div><h4>XM-05 塔纳托斯</h4><p>末日巨虫形态</p></div>
-            <div class="machine-card clickable-link" data-wiki-link="true"><div class="machine-icon"><i class="fas fa-microchip"></i></div><h4>XF-09 阿瑞斯</h4><p>重型陆战要塞</p></div>
-        </div>
-        <div class="tech-card clickable-link" style="padding: 0.8rem 1.2rem;" data-wiki-link="true">
-            <p style="font-size:0.85rem;"><i class="fas fa-skull"></i> 特殊变体 · XB-∞ “赫卡忒” ：Get fixed boi种子专属路线，嘉登会以NPC形态观战并最终对决。</p>
-        </div>
-    </div>
-
-    <!-- 引语 -->
-    <div class="quote-area clickable-link" data-wiki-link="true">
-        <i class="fas fa-quote-right"></i>
-        <div class="quote-text">“我不沉溺于人类‘空闲时间’的观点。我所采取的每一步行动都是为了扩展我的科学知识，这就是我的目标。”</div>
-        <div style="font-size: 0.85rem; opacity: 0.7;">—— 嘉登，对求知欲的回应</div>
     </div>
 
     <!-- 加密通讯区块 (整体可点击跳转，但内部的QQ号区域不受影响) -->
@@ -628,7 +614,7 @@
         </div>
     </div>
 
-    <!-- QQ 联系方式：此区域独立，点击复制QQ号，不跳转 -->
+    <!-- QQ 联系方式：独立区域，点击复制QQ号，不跳转 -->
     <div class="contact-qq">
         <div class="qq-card" id="qqCopyBtn">
             <i class="fab fa-qq"></i>
@@ -639,8 +625,8 @@
     </div>
 
     <footer class="clickable-link" data-wiki-link="true">
-        <span><i class="fas fa-microchip"></i> 灾厄模组 · 嘉登档案 · 意识永续 | 数据基于历代实验室日志与星流协定</span>
-        <span style="display: block; margin-top: 6px;">“当科学越过道德时，世界将为之震颤” —— 摘自瘟疫研究附录</span>
+        <span><i class="fas fa-microchip"></i> 灾厄模组 · 嘉登档案 · 二次元特化版 | 数据基于历代实验室日志与星流协定</span>
+        <span style="display: block; margin-top: 6px;">“没有h游无法活下去” —— 摘自嘉登最新心理评估报告附录</span>
     </footer>
 </div>
 
@@ -649,20 +635,117 @@
 
 <script>
     (function() {
-        // 1. 设置所有带 data-wiki-link="true" 的元素点击后跳转到灾厄维基
+        // ---------- 小游戏逻辑 (星流反应堆) ----------
+        let currentEnergy = 0;
+        let decayInterval = null;
+        let gameActive = true;
+        let gameWinFlag = false;
+
+        const energyFill = document.getElementById('energyFill');
+        const energyPercent = document.getElementById('energyPercent');
+        const chargeBtn = document.getElementById('chargeBtn');
+        const gameMsgDiv = document.getElementById('gameMsg');
+        const resetBtn = document.getElementById('resetGameBtn');
+
+        function updateUI() {
+            let percent = Math.min(100, Math.max(0, currentEnergy));
+            energyFill.style.width = percent + '%';
+            energyPercent.innerText = Math.floor(percent) + '%';
+            
+            if (percent >= 100 && !gameWinFlag) {
+                gameWinFlag = true;
+                if (decayInterval) clearInterval(decayInterval);
+                gameActive = false;
+                gameMsgDiv.innerHTML = '<span style="color:#aaffdd;">✅ 星流核心已完全充能！实验成功。嘉登意识体表示赞赏。<br>点击「重新启动」继续新的实验。</span>';
+                chargeBtn.disabled = true;
+                chargeBtn.style.opacity = '0.5';
+                chargeBtn.style.cursor = 'default';
+            } else if (percent <= 0 && gameActive && !gameWinFlag) {
+                if (!gameWinFlag) {
+                    gameMsgDiv.innerHTML = '⚠️ 能量过低！核心即将休眠，请快速注入能量！';
+                }
+            } else if (!gameWinFlag && gameActive) {
+                if (percent < 30) gameMsgDiv.innerHTML = '⚠️ 能量不足，星流反应堆效率低下，请注入更多能量。';
+                else if (percent < 70) gameMsgDiv.innerHTML = '🔋 能量稳定，继续充能以完成协议。';
+                else gameMsgDiv.innerHTML = '⚡ 能量逼近临界点！再坚持一下！';
+            }
+        }
+
+        function addEnergy(amount) {
+            if (!gameActive || gameWinFlag) return;
+            let newVal = currentEnergy + amount;
+            if (newVal >= 100) {
+                currentEnergy = 100;
+                updateUI();
+                return;
+            }
+            currentEnergy = newVal;
+            updateUI();
+        }
+
+        function decayEnergy() {
+            if (!gameActive || gameWinFlag) return;
+            if (currentEnergy > 0) {
+                let decrease = Math.max(1, Math.floor(currentEnergy * 0.02) + 1);
+                currentEnergy = Math.max(0, currentEnergy - decrease);
+                updateUI();
+                if (currentEnergy <= 0 && !gameWinFlag) {
+                    gameMsgDiv.innerHTML = '💀 反应堆停止运转，实验失败。点击「重新启动」继续挑战。<br>嘉登日志: 能量管理也是科学的一部分。';
+                    gameActive = false;
+                    if (decayInterval) clearInterval(decayInterval);
+                    chargeBtn.disabled = true;
+                    chargeBtn.style.opacity = '0.5';
+                }
+            }
+        }
+
+        function startGame(initialEnergy = 0) {
+            if (decayInterval) clearInterval(decayInterval);
+            gameActive = true;
+            gameWinFlag = false;
+            currentEnergy = Math.min(100, Math.max(0, initialEnergy));
+            updateUI();
+            chargeBtn.disabled = false;
+            chargeBtn.style.opacity = '1';
+            gameMsgDiv.innerHTML = '⚡ 反应堆激活。点击「注入能量」进行充能，充满100%完成实验！能量会随时间衰减。';
+            decayInterval = setInterval(() => {
+                decayEnergy();
+            }, 800);
+        }
+
+        function resetGame() {
+            if (decayInterval) clearInterval(decayInterval);
+            startGame(0);
+        }
+
+        if (chargeBtn) {
+            chargeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!gameActive || gameWinFlag) return;
+                addEnergy(12);
+                chargeBtn.style.transform = 'scale(0.96)';
+                setTimeout(() => { if(chargeBtn) chargeBtn.style.transform = ''; }, 100);
+            });
+        }
+        if (resetBtn) {
+            resetBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                resetGame();
+            });
+        }
+        startGame(0);
+
+        // ---------- 维基跳转（除qq区域外）----------
         const wikiBaseUrl = 'https://calamity.huijiwiki.com/wiki/';
         const wikiLinkElements = document.querySelectorAll('[data-wiki-link="true"]');
-        
         wikiLinkElements.forEach(elem => {
             elem.addEventListener('click', (event) => {
-                // 阻止事件冒泡，防止意外
                 event.stopPropagation();
-                // 打开指定链接
                 window.open(wikiBaseUrl, '_blank');
             });
         });
 
-        // 2. QQ 复制 + 提示功能（完全独立，不受上方跳转干扰）
+        // 2. QQ 复制 + 提示功能
         const qqCard = document.getElementById('qqCopyBtn');
         const toast = document.getElementById('copyToast');
         const qqNumber = '1163747186';
@@ -679,7 +762,6 @@
                 await navigator.clipboard.writeText(qqNumber);
                 showCopyMessage();
             } catch (err) {
-                // 降级方案
                 const textarea = document.createElement('textarea');
                 textarea.value = qqNumber;
                 document.body.appendChild(textarea);
@@ -691,7 +773,6 @@
         }
         
         if (qqCard) {
-            // 阻止事件冒泡到父级，防止触发跳转
             qqCard.addEventListener('click', (e) => {
                 e.stopPropagation();
                 copyQQNumber();
@@ -723,7 +804,7 @@
         animate();
         if ('ontouchstart' in window) particle.style.display = 'none';
         
-        console.log("%c[嘉登协议] 星流档案已加载 | 图像终极Base64模式生效 | QQ复制与维基跳转双模块在线", "color: #00ccff; font-size: 12px; font-family: monospace;");
+        console.log("%c[嘉登协议] 二次元特化档案已加载 | 小游戏在线 | QQ复制与维基跳转模块活跃", "color: #ff88bb; font-size: 12px; font-family: monospace;");
     })();
 </script>
 </body>
