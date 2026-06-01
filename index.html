@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>嘉登 · 乐子猫主人 | 灾厄档案 · 三选一传送门</title>
+    <title>嘉登 · 乐子猫主人 | 灾厄档案 · 四选一传送门</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -303,7 +303,7 @@
             font-size: 1.6rem;
         }
 
-        /* 传送门按钮区域 - 三个选项 */
+        /* 传送门按钮区域 - 四个选项 */
         .portal-container {
             background: rgba(5, 10, 22, 0.7);
             backdrop-filter: blur(8px);
@@ -336,9 +336,9 @@
         .portal-btn {
             background: linear-gradient(135deg, #1a2a4a, #0f1830);
             border: 1px solid rgba(0, 200, 255, 0.6);
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 3rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #e2ecff;
             cursor: pointer;
@@ -346,12 +346,12 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-family: monospace;
             backdrop-filter: blur(4px);
         }
         .portal-btn i {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
         .portal-btn:hover {
             transform: translateY(-4px);
@@ -359,10 +359,11 @@
             background: linear-gradient(135deg, #2a3d6a, #1a2545);
             box-shadow: 0 0 18px rgba(0,200,255,0.3);
         }
-        /* 单独定义每个按钮的 hover 光效不同 */
+        /* 各按钮专属 hover 光效 */
         .btn-galgame:hover i { color: #ff99cc; text-shadow: 0 0 6px #ff66aa; }
         .btn-github:hover i { color: #f0f6ff; text-shadow: 0 0 6px #ffffff; }
         .btn-bili:hover i { color: #fb7299; text-shadow: 0 0 6px #fb7299; }
+        .btn-dlsite:hover i { color: #ffaa66; text-shadow: 0 0 6px #ff884d; }
 
         .lab-list {
             display: flex;
@@ -472,7 +473,7 @@
             .draedon-image { width: 220px; height: 220px; }
             .section-title { font-size: 1.4rem;}
             .copy-toast { white-space: nowrap; font-size: 0.8rem; padding: 6px 18px;}
-            .portal-btn { padding: 8px 18px; font-size: 0.9rem; }
+            .portal-btn { padding: 8px 16px; font-size: 0.8rem; }
             .button-group { gap: 0.8rem; }
             .personal-bio { font-size: 0.85rem; }
         }
@@ -557,11 +558,11 @@
         </div>
     </div>
 
-    <!-- 传送门三选项：取代原小游戏 -->
+    <!-- 传送门四选项：取代原小游戏 -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
             <i class="fas fa-dice-d6"></i>
-            <span>跨次元传送门 · 三选一</span>
+            <span>跨次元传送门 · 四选一</span>
         </div>
         <div class="portal-container">
             <div class="portal-title">
@@ -569,17 +570,21 @@
             </div>
             <div class="portal-sub">点击任意门，前往对应领域 —— 自选命运分支</div>
             <div class="button-group">
-                <!-- 第一个按钮：galgamex.top 搜索页 -->
+                <!-- 按钮1：galgamex.top 搜索页 -->
                 <a href="https://www.galgamex.top/search" target="_blank" class="portal-btn btn-galgame" id="portalGalgame">
                     <i class="fas fa-heart"></i> Galgame 资源站
                 </a>
-                <!-- 第二个按钮：GitHub -->
+                <!-- 按钮2：GitHub -->
                 <a href="https://github.com/" target="_blank" class="portal-btn btn-github" id="portalGithub">
                     <i class="fab fa-github"></i> GitHub · 代码宇宙
                 </a>
-                <!-- 第三个按钮：Bilibili -->
+                <!-- 按钮3：Bilibili -->
                 <a href="https://www.bilibili.com/" target="_blank" class="portal-btn btn-bili" id="portalBili">
                     <i class="fas fa-tv"></i> Bilibili · 弹幕梦域
+                </a>
+                <!-- 按钮4：DLsite (新增加) -->
+                <a href="https://www.dlsite.com" target="_blank" class="portal-btn btn-dlsite" id="portalDlsite">
+                    <i class="fas fa-shopping-cart"></i> DLsite · 同人宝库
                 </a>
             </div>
             <div style="margin-top: 1.2rem; font-size:0.7rem; opacity:0.6;">
@@ -634,8 +639,7 @@
             });
         });
         
-        // 确保传送门按钮的独立跳转不受干扰，但是它们已经是 <a> 标签，自带 href 和 target，完全独立。
-        // 只需要防止它们冒泡到父级被 wiki 跳转捕获即可（它们本身没有 data-wiki-link，安全）。
+        // 传送门按钮是独立的 <a> 标签，自带 href 和 target，完全不受干扰。
         
         // 2. QQ 复制 + 提示功能
         const qqCard = document.getElementById('qqCopyBtn');
@@ -696,7 +700,7 @@
         animate();
         if ('ontouchstart' in window) particle.style.display = 'none';
         
-        console.log("%c[嘉登协议] 乐子猫拥有者档案已加载 | 三选一传送门已开启 | QQ复制与维基跳转模块活跃", "color: #ff88bb; font-size: 12px; font-family: monospace;");
+        console.log("%c[嘉登协议] 乐子猫拥有者档案已加载 | 四选一传送门已开启（含DLsite）| QQ复制与维基跳转模块活跃", "color: #ff88bb; font-size: 12px; font-family: monospace;");
     })();
 </script>
 </body>
