@@ -3,480 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>嘉登 · 乐子猫主人 | 灾厄档案 · 四选一传送门</title>
+    <title>嘉登 · 乐子猫主人 | 灾厄档案 · 网站导航</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0a0c16;
-            font-family: 'Inter', 'Space Grotesk', sans-serif;
-            color: #e8edff;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* 动态科技网格背景 */
-        .cyber-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        .cyber-bg::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(0, 150, 255, 0.08), transparent 70%);
-            animation: pulseGlow 8s ease infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.4; }
-        }
-
-        .scan-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 180, 255, 0.03) 50%, transparent 100%);
-            pointer-events: none;
-            z-index: -1;
-            animation: scan 10s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* 全局可点击元素 (除了 .qq-card 和 .portal-btn) 都应用跳转样式 */
-        .clickable-link:not(.qq-card):not(.qq-card *):not(.portal-btn) {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .clickable-link:not(.qq-card):not(.qq-card *):not(.portal-btn):hover {
-            filter: brightness(1.1);
-            text-shadow: 0 0 5px #00ccff;
-        }
-
-        .tech-card {
-            background: rgba(12, 18, 32, 0.65);
-            backdrop-filter: blur(12px);
-            border-radius: 1.5rem;
-            border: 1px solid rgba(0, 180, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 200, 255, 0.1) inset;
-            transition: all 0.3s ease;
-        }
-
-        .tech-card:hover {
-            border-color: rgba(0, 200, 255, 0.6);
-            background: rgba(14, 22, 40, 0.75);
-        }
-
-        /* 导航栏 */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 0.7rem 2rem;
-            margin-bottom: 2.5rem;
-            background: rgba(0, 5, 15, 0.7);
-            backdrop-filter: blur(16px);
-            border-radius: 3rem;
-            border: 1px solid rgba(0, 160, 255, 0.35);
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #ffffff, #00ccff, #7a2eff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: #00ccff;
-            background: none;
-            font-size: 1.6rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #b8e2ff;
-            font-weight: 500;
-            transition: 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover {
-            color: #00ccff;
-            text-shadow: 0 0 8px #00ccff;
-        }
-
-        /* Hero 区域 */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            margin-bottom: 4rem;
-            align-items: center;
-        }
-
-        .hero-info {
-            flex: 1.2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(0, 150, 255, 0.2);
-            backdrop-filter: blur(4px);
-            padding: 0.25rem 1rem;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border-left: 3px solid #00ccff;
-            margin-bottom: 1rem;
-            font-family: monospace;
-        }
-
-        .hero-info h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-        }
-
-        .gradient-name {
-            background: linear-gradient(135deg, #ffffff, #00ccff, #a855f7);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .title-tag {
-            font-size: 1.2rem;
-            color: #7bc5ff;
-            margin-bottom: 1rem;
-        }
-
-        .hero-desc {
-            color: #c5d9ff;
-            margin: 1rem 0 1.5rem;
-            max-width: 90%;
-            line-height: 1.6;
-        }
-
-        /* 个人介绍 - 特殊高亮 */
-        .personal-bio {
-            background: rgba(0, 0, 0, 0.45);
-            border-radius: 1.2rem;
-            padding: 1rem 1.4rem;
-            margin: 1rem 0 1rem;
-            border-left: 3px solid #ff77aa;
-            font-size: 0.95rem;
-            backdrop-filter: blur(4px);
-        }
-        .personal-bio i {
-            color: #ff88bb;
-            margin-right: 8px;
-        }
-        .personal-bio strong {
-            color: #ffb3d1;
-        }
-
-        .stat-badge {
-            display: flex;
-            gap: 1.2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: rgba(0, 30, 50, 0.6);
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.8rem;
-            border: 0.5px solid #2a6f8f;
-        }
-
-        .stat i {
-            color: #00ccff;
-            margin-right: 6px;
-        }
-
-        /* 嘉登图片区域 - 使用内嵌图像数据 (Base64) */
-        .hero-visual {
-            flex: 0.9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .draedon-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 30% 70% 55% 45% / 45% 38% 62% 55%;
-            overflow: hidden;
-            border: 2px solid rgba(0, 200, 255, 0.8);
-            box-shadow: 0 0 30px rgba(0, 150, 255, 0.6), inset 0 0 20px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-            background: #0a1022;
-            animation: floatHolo 6s ease-in-out infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .draedon-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 20%;
-            display: block;
-            transition: transform 0.4s;
-        }
-
-        .draedon-image:hover img {
-            transform: scale(1.02);
-        }
-
-        @keyframes floatHolo {
-            0% { transform: translateY(0px) rotate(0deg); border-radius: 30% 70% 55% 45% / 45% 38% 62% 55%;}
-            50% { transform: translateY(-12px) rotate(2deg); border-radius: 55% 45% 40% 60% / 55% 48% 52% 45%;}
-            100% { transform: translateY(0px) rotate(0deg);}
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin: 2.5rem 0 1.2rem 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-left: 4px solid #00ccff;
-            padding-left: 1rem;
-        }
-
-        .section-title i {
-            color: #00ccff;
-            font-size: 1.6rem;
-        }
-
-        /* 传送门按钮区域 - 四个选项 */
-        .portal-container {
-            background: rgba(5, 10, 22, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 1.8rem;
-            padding: 2rem;
-            margin: 1.5rem 0 2rem;
-            text-align: center;
-            border: 1px solid rgba(0, 180, 255, 0.4);
-        }
-        .portal-title {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #ffb3ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        .portal-sub {
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            color: #98b9ff;
-        }
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        .portal-btn {
-            background: linear-gradient(135deg, #1a2a4a, #0f1830);
-            border: 1px solid rgba(0, 200, 255, 0.6);
-            padding: 12px 24px;
-            border-radius: 3rem;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #e2ecff;
-            cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: monospace;
-            backdrop-filter: blur(4px);
-        }
-        .portal-btn i {
-            font-size: 1.4rem;
-        }
-        .portal-btn:hover {
-            transform: translateY(-4px);
-            border-color: #00ccff;
-            background: linear-gradient(135deg, #2a3d6a, #1a2545);
-            box-shadow: 0 0 18px rgba(0,200,255,0.3);
-        }
-        /* 各按钮专属 hover 光效 */
+        /* ---------- 所有样式保持不变 ---------- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0a0c16; font-family: 'Inter', 'Space Grotesk', sans-serif; color: #e8edff; line-height: 1.5; overflow-x: hidden; }
+        .cyber-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: -2; pointer-events: none; }
+        .cyber-bg::before { content: ''; position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, rgba(0, 150, 255, 0.08), transparent 70%); animation: pulseGlow 8s ease infinite; }
+        @keyframes pulseGlow { 0% { opacity: 0.4; } 50% { opacity: 0.8; } 100% { opacity: 0.4; } }
+        .scan-line { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 0%, rgba(0, 180, 255, 0.03) 50%, transparent 100%); pointer-events: none; z-index: -1; animation: scan 10s linear infinite; }
+        @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+        .container { max-width: 1300px; margin: 0 auto; padding: 1.5rem 2rem 3rem; position: relative; z-index: 2; }
+        .clickable-link:not(.qq-card):not(.qq-card *):not(.portal-btn) { cursor: pointer; transition: all 0.2s ease; }
+        .clickable-link:not(.qq-card):not(.qq-card *):not(.portal-btn):hover { filter: brightness(1.1); text-shadow: 0 0 5px #00ccff; }
+        .tech-card { background: rgba(12, 18, 32, 0.65); backdrop-filter: blur(12px); border-radius: 1.5rem; border: 1px solid rgba(0, 180, 255, 0.3); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 200, 255, 0.1) inset; transition: all 0.3s ease; }
+        .tech-card:hover { border-color: rgba(0, 200, 255, 0.6); background: rgba(14, 22, 40, 0.75); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 0.7rem 2rem; margin-bottom: 2.5rem; background: rgba(0, 5, 15, 0.7); backdrop-filter: blur(16px); border-radius: 3rem; border: 1px solid rgba(0, 160, 255, 0.35); }
+        .logo { font-weight: 700; font-size: 1.5rem; letter-spacing: 1px; background: linear-gradient(135deg, #ffffff, #00ccff, #7a2eff); -webkit-background-clip: text; background-clip: text; color: transparent; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: #00ccff; background: none; font-size: 1.6rem; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: #b8e2ff; font-weight: 500; transition: 0.2s; font-size: 0.9rem; }
+        .nav-links a:hover { color: #00ccff; text-shadow: 0 0 8px #00ccff; }
+        .hero { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 4rem; align-items: center; }
+        .hero-info { flex: 1.2; }
+        .hero-badge { display: inline-block; background: rgba(0, 150, 255, 0.2); backdrop-filter: blur(4px); padding: 0.25rem 1rem; border-radius: 30px; font-size: 0.75rem; font-weight: 500; border-left: 3px solid #00ccff; margin-bottom: 1rem; font-family: monospace; }
+        .hero-info h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+        .gradient-name { background: linear-gradient(135deg, #ffffff, #00ccff, #a855f7); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .title-tag { font-size: 1.2rem; color: #7bc5ff; margin-bottom: 1rem; }
+        .hero-desc { color: #c5d9ff; margin: 1rem 0 1.5rem; max-width: 90%; line-height: 1.6; }
+        .personal-bio { background: rgba(0, 0, 0, 0.45); border-radius: 1.2rem; padding: 1rem 1.4rem; margin: 1rem 0 1rem; border-left: 3px solid #ff77aa; font-size: 0.95rem; backdrop-filter: blur(4px); }
+        .personal-bio i { color: #ff88bb; margin-right: 8px; }
+        .personal-bio strong { color: #ffb3d1; }
+        .stat-badge { display: flex; gap: 1.2rem; margin-top: 1rem; flex-wrap: wrap; }
+        .stat { background: rgba(0, 30, 50, 0.6); padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.8rem; border: 0.5px solid #2a6f8f; }
+        .stat i { color: #00ccff; margin-right: 6px; }
+        .hero-visual { flex: 0.9; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 1rem; }
+        .draedon-image { width: 300px; height: 300px; border-radius: 30% 70% 55% 45% / 45% 38% 62% 55%; overflow: hidden; border: 2px solid rgba(0, 200, 255, 0.8); box-shadow: 0 0 30px rgba(0, 150, 255, 0.6), inset 0 0 20px rgba(0,0,0,0.4); transition: all 0.3s ease; background: #0a1022; animation: floatHolo 6s ease-in-out infinite; display: flex; align-items: center; justify-content: center; position: relative; }
+        .draedon-image img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; transition: transform 0.4s; }
+        .draedon-image:hover img { transform: scale(1.02); }
+        @keyframes floatHolo { 0% { transform: translateY(0px) rotate(0deg); border-radius: 30% 70% 55% 45% / 45% 38% 62% 55%; } 50% { transform: translateY(-12px) rotate(2deg); border-radius: 55% 45% 40% 60% / 55% 48% 52% 45%; } 100% { transform: translateY(0px) rotate(0deg); } }
+        .section-title { font-size: 1.8rem; font-weight: 600; margin: 2.5rem 0 1.2rem 0; display: flex; align-items: center; gap: 12px; border-left: 4px solid #00ccff; padding-left: 1rem; }
+        .section-title i { color: #00ccff; font-size: 1.6rem; }
+        .portal-container { background: rgba(5, 10, 22, 0.7); backdrop-filter: blur(8px); border-radius: 1.8rem; padding: 2rem; margin: 1.5rem 0 2rem; text-align: center; border: 1px solid rgba(0, 180, 255, 0.4); }
+        .button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+        .portal-btn { background: linear-gradient(135deg, #1a2a4a, #0f1830); border: 1px solid rgba(0, 200, 255, 0.6); padding: 12px 24px; border-radius: 3rem; font-size: 1rem; font-weight: bold; color: #e2ecff; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: monospace; backdrop-filter: blur(4px); }
+        .portal-btn i { font-size: 1.4rem; }
+        .portal-btn:hover { transform: translateY(-4px); border-color: #00ccff; background: linear-gradient(135deg, #2a3d6a, #1a2545); box-shadow: 0 0 18px rgba(0,200,255,0.3); }
         .btn-galgame:hover i { color: #ff99cc; text-shadow: 0 0 6px #ff66aa; }
         .btn-github:hover i { color: #f0f6ff; text-shadow: 0 0 6px #ffffff; }
         .btn-bili:hover i { color: #fb7299; text-shadow: 0 0 6px #fb7299; }
         .btn-dlsite:hover i { color: #ffaa66; text-shadow: 0 0 6px #ff884d; }
-
-        .lab-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin: 1rem 0;
-        }
-
-        .lab-tag {
-            background: rgba(0, 150, 255, 0.15);
-            border-radius: 2rem;
-            padding: 0.3rem 1rem;
-            font-size: 0.8rem;
-            border: 0.5px solid #2c6d96;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .lab-tag:hover {
-            background: rgba(0, 200, 255, 0.3);
-            border-color: #00ccff;
-        }
-
-        /* QQ 联系方式 + 复制提示动画 */
-        .contact-qq {
-            margin-top: 2rem;
-            text-align: center;
-        }
-        .qq-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(0, 20, 40, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 0.7rem 2rem;
-            border-radius: 4rem;
-            border: 1px solid #00ccff;
-            transition: 0.2s;
-            cursor: pointer;
-            position: relative;
-        }
-        .qq-card i {
-            font-size: 2rem;
-            color: #00ccff;
-        }
-        .qq-card span {
-            font-size: 1.3rem;
-            font-weight: 600;
-            font-family: monospace;
-            letter-spacing: 1px;
-        }
-        .qq-card:hover {
-            background: #00aaff22;
-            box-shadow: 0 0 15px #00ccff;
-            transform: scale(1.01);
-        }
-
-        .copy-toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: rgba(0, 200, 255, 0.95);
-            backdrop-filter: blur(16px);
-            color: #0a0c16;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.2s, transform 0.2s;
-            pointer-events: none;
-            white-space: nowrap;
-            border: 1px solid white;
-            box-shadow: 0 0 20px rgba(0,200,255,0.5);
-            font-family: monospace;
-        }
-        .copy-toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0px);
-        }
-
-        footer {
-            margin-top: 4rem;
-            text-align: center;
-            padding: 1.5rem;
-            border-top: 1px solid rgba(0, 150, 255, 0.2);
-            font-size: 0.75rem;
-            color: #7b93b5;
-            cursor: pointer;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0c16;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1c6f9e;
-            border-radius: 8px;
-        }
-
-        @media (max-width: 760px) {
-            .container { padding: 1rem; }
-            .hero-info h1 { font-size: 2.2rem; }
-            .draedon-image { width: 220px; height: 220px; }
-            .section-title { font-size: 1.4rem;}
-            .copy-toast { white-space: nowrap; font-size: 0.8rem; padding: 6px 18px;}
-            .portal-btn { padding: 8px 16px; font-size: 0.8rem; }
-            .button-group { gap: 0.8rem; }
-            .personal-bio { font-size: 0.85rem; }
-        }
+        .lab-list { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1rem 0; }
+        .lab-tag { background: rgba(0, 150, 255, 0.15); border-radius: 2rem; padding: 0.3rem 1rem; font-size: 0.8rem; border: 0.5px solid #2c6d96; cursor: pointer; transition: 0.2s; }
+        .lab-tag:hover { background: rgba(0, 200, 255, 0.3); border-color: #00ccff; }
+        .contact-qq { margin-top: 2rem; text-align: center; }
+        .qq-card { display: inline-flex; align-items: center; gap: 15px; background: rgba(0, 20, 40, 0.85); backdrop-filter: blur(12px); padding: 0.7rem 2rem; border-radius: 4rem; border: 1px solid #00ccff; transition: 0.2s; cursor: pointer; position: relative; }
+        .qq-card i { font-size: 2rem; color: #00ccff; }
+        .qq-card span { font-size: 1.3rem; font-weight: 600; font-family: monospace; letter-spacing: 1px; }
+        .qq-card:hover { background: #00aaff22; box-shadow: 0 0 15px #00ccff; transform: scale(1.01); }
+        .copy-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(0, 200, 255, 0.95); backdrop-filter: blur(16px); color: #0a0c16; padding: 10px 24px; border-radius: 40px; font-weight: bold; font-size: 0.9rem; z-index: 9999; opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none; white-space: nowrap; border: 1px solid white; box-shadow: 0 0 20px rgba(0,200,255,0.5); font-family: monospace; }
+        .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0px); }
+        .footer-placeholder { margin-top: 4rem; padding: 0.5rem; cursor: pointer; min-height: 10px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0c16; }
+        ::-webkit-scrollbar-thumb { background: #1c6f9e; border-radius: 8px; }
+        @media (max-width: 760px) { .container { padding: 1rem; } .hero-info h1 { font-size: 2.2rem; } .draedon-image { width: 220px; height: 220px; } .section-title { font-size: 1.4rem; } .copy-toast { white-space: nowrap; font-size: 0.8rem; padding: 6px 18px; } .portal-btn { padding: 8px 16px; font-size: 0.8rem; } .button-group { gap: 0.8rem; } .personal-bio { font-size: 0.85rem; } }
     </style>
 </head>
 <body>
@@ -484,7 +77,7 @@
 <div class="scan-line"></div>
 
 <div class="container">
-    <!-- 导航栏 - 所有链接跳转至灾厄维基 -->
+    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo clickable-link" data-wiki-link="true">
             <i class="fas fa-microchip"></i>
@@ -499,22 +92,21 @@
         <div class="clickable-link" data-wiki-link="true"><i class="fas fa-satellite-dish" style="color:#00ccff;"></i></div>
     </nav>
 
-    <!-- Hero 信息区 + 嘉登图片（Base64图像）-->
+    <!-- Hero 信息区 + 嘉登图片 -->
     <div class="hero">
         <div class="hero-info">
             <div class="hero-badge clickable-link" data-wiki-link="true">
                 <i class="fas fa-brain"></i> 意识上传 · 永恒乐子人
             </div>
-            <h1><span class="gradient-name">嘉登</span><br><span style="font-size:2rem;">及时享乐</span></h1>
+            <h1><span class="gradient-name">嘉登</span><br><span style="font-size:2rem;">泰拉瑞亚</span></h1>
             <div class="title-tag">✦ 夯的批爆的乐子猫的拥有者 ✦</div>
             
-            <!-- 个人介绍 -->
+            <!-- 个人介绍 - 已添加"原神" -->
             <div class="personal-bio">
                 <i class="fas fa-heart" style="color:#ff88bb;"></i> <strong>◆ 个人配置 ◆</strong><br>
-                🎮 galgame重度依赖者 &nbsp;|&nbsp; 🌿 泰拉瑞亚狂热爱好者<br>
-                🖤 Blacksouls2至今未通关之人 &nbsp;|&nbsp; 📺 灵能百分百3至今未追完之人<br>
-                💢 没有h游无法活下去之人<br>
-                <span style="font-size:0.75rem; opacity:0.7; display:inline-block; margin-top:6px;"><i class="fas fa-cog"></i> 精神核心驱动: 美少女与像素块</span>
+                🎮 泰拉瑞亚 &nbsp;|&nbsp; ⚙️ 泰拉瑞亚灾厄 &nbsp;|&nbsp; ✨ 原神<br>
+                🖤 Blacksouls1 &nbsp;|&nbsp; 🖤 Blacksouls2<br>
+                💢 去你妈的学校
             </div>
             
             <p class="hero-desc">
@@ -531,15 +123,14 @@
         <div class="hero-visual">
             <div class="draedon-image">
                 <img id="draedonImg" 
-                     src="data:image/webp;base64,UklGRnwAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSAgAAAABH6CQbQAAAAD//+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3r179+7du3fv3lVQOGCBAAAA0AIAnQEqEAAPAA9BoS2WAAQAA2iKAAD+/fv379+/fv379+/fv379+/fv37+SAAAA" 
+                     src="https://i.ibb.co/kVMtQn4g/jiadeng-jpg.jpg" 
                      alt="嘉登·乐子猫拥有者 灾厄立绘"
                      style="width:100%; height:100%; object-fit:cover; background: #0a1022;">
             </div>
-            <div style="font-size:0.7rem; color:#00ccff80; margin-top: 0px;"><i class="fas fa-id-card"></i> 星流意识体 · 二次元特化型人格</div>
         </div>
     </div>
 
-    <!-- 实验室分布（保留原风格，可点击跳转） -->
+    <!-- 实验室分布 -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
             <i class="fas fa-map-marker-alt"></i>
@@ -558,42 +149,31 @@
         </div>
     </div>
 
-    <!-- 传送门四选项：取代原小游戏 -->
+    <!-- 传送门四选项 -->
     <div>
         <div class="section-title clickable-link" data-wiki-link="true">
             <i class="fas fa-dice-d6"></i>
-            <span>跨次元传送门 · 四选一</span>
+            <span>网站</span>
         </div>
         <div class="portal-container">
-            <div class="portal-title">
-                <i class="fas fa-cat"></i> 夯的批爆的乐子猫传送协议
-            </div>
-            <div class="portal-sub">点击任意门，前往对应领域 —— 自选命运分支</div>
             <div class="button-group">
-                <!-- 按钮1：galgamex.top 搜索页 -->
-                <a href="https://www.galgamex.top/search" target="_blank" class="portal-btn btn-galgame" id="portalGalgame">
-                    <i class="fas fa-heart"></i> Galgame 资源站
+                <a href="https://www.galgamex.top/search" target="_blank" class="portal-btn btn-galgame">
+                    <i class="fas fa-heart"></i> Galgamex
                 </a>
-                <!-- 按钮2：GitHub -->
-                <a href="https://github.com/" target="_blank" class="portal-btn btn-github" id="portalGithub">
-                    <i class="fab fa-github"></i> GitHub · 代码宇宙
+                <a href="https://github.com/" target="_blank" class="portal-btn btn-github">
+                    <i class="fab fa-github"></i> GitHub
                 </a>
-                <!-- 按钮3：Bilibili -->
-                <a href="https://www.bilibili.com/" target="_blank" class="portal-btn btn-bili" id="portalBili">
-                    <i class="fas fa-tv"></i> Bilibili · 弹幕梦域
+                <a href="https://www.bilibili.com/" target="_blank" class="portal-btn btn-bili">
+                    <i class="fas fa-tv"></i> Bilibili
                 </a>
-                <!-- 按钮4：DLsite (新增加) -->
-                <a href="https://www.dlsite.com" target="_blank" class="portal-btn btn-dlsite" id="portalDlsite">
-                    <i class="fas fa-shopping-cart"></i> DLsite · 同人宝库
+                <a href="https://www.dlsite.com" target="_blank" class="portal-btn btn-dlsite">
+                    <i class="fas fa-shopping-cart"></i> DLsite
                 </a>
-            </div>
-            <div style="margin-top: 1.2rem; font-size:0.7rem; opacity:0.6;">
-                <i class="fas fa-shield-alt"></i> 传送门由嘉登意志授权，点击即出发
             </div>
         </div>
     </div>
 
-    <!-- 加密通讯区块 (整体可点击跳转，但内部的QQ号区域不受影响) -->
+    <!-- 加密通讯区块 -->
     <div class="tech-card clickable-link" style="padding: 1.2rem 1.5rem; margin-bottom: 1rem;" data-wiki-link="true">
         <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between;">
             <div>
@@ -607,20 +187,17 @@
         </div>
     </div>
 
-    <!-- QQ 联系方式：独立区域，点击复制QQ号，不跳转 -->
+    <!-- QQ 联系方式 -->
     <div class="contact-qq">
         <div class="qq-card" id="qqCopyBtn">
             <i class="fab fa-qq"></i>
             <span>1163747186</span>
             <i class="fas fa-microchip" style="font-size:1.2rem;"></i>
         </div>
-        <p style="margin-top: 8px; font-size:0.7rem; opacity:0.7;"><i class="fas fa-lock"></i> 点击QQ号复制 | 科学实验合作 / 灾厄学术交流</p>
     </div>
 
-    <footer class="clickable-link" data-wiki-link="true">
-        <span><i class="fas fa-microchip"></i> 灾厄模组 · 嘉登档案 · 乐子猫特化版 | 传送门已部署</span>
-        <span style="display: block; margin-top: 6px;">“夯的批爆的乐子猫的拥有者” —— 摘自嘉登最新头衔认证</span>
-    </footer>
+    <!-- 页脚占位 -->
+    <div class="footer-placeholder clickable-link" data-wiki-link="true"></div>
 </div>
 
 <!-- 复制提示浮层 -->
@@ -628,9 +205,8 @@
 
 <script>
     (function() {
-        // ---------- 维基跳转（除qq区域和传送门按钮外）----------
+        // 维基跳转
         const wikiBaseUrl = 'https://calamity.huijiwiki.com/wiki/';
-        // 选取所有带 data-wiki-link 的元素，但不包含传送门按钮本身（传送门按钮是 <a> 已经自带链接）
         const wikiLinkElements = document.querySelectorAll('[data-wiki-link="true"]');
         wikiLinkElements.forEach(elem => {
             elem.addEventListener('click', (event) => {
@@ -639,9 +215,7 @@
             });
         });
         
-        // 传送门按钮是独立的 <a> 标签，自带 href 和 target，完全不受干扰。
-        
-        // 2. QQ 复制 + 提示功能
+        // QQ 复制
         const qqCard = document.getElementById('qqCopyBtn');
         const toast = document.getElementById('copyToast');
         const qqNumber = '1163747186';
@@ -675,7 +249,7 @@
             });
         }
         
-        // 3. 动态鼠标光晕效果（保留）
+        // 动态鼠标光晕
         const particle = document.createElement('div');
         particle.style.position = 'fixed';
         particle.style.width = '280px';
@@ -700,7 +274,7 @@
         animate();
         if ('ontouchstart' in window) particle.style.display = 'none';
         
-        console.log("%c[嘉登协议] 乐子猫拥有者档案已加载 | 四选一传送门已开启（含DLsite）| QQ复制与维基跳转模块活跃", "color: #ff88bb; font-size: 12px; font-family: monospace;");
+        console.log("%c[嘉登协议] 个人配置已添加'原神' | 图片显示正常 | 所有功能运行中", "color: #ff88bb; font-size: 12px; font-family: monospace;");
     })();
 </script>
 </body>
